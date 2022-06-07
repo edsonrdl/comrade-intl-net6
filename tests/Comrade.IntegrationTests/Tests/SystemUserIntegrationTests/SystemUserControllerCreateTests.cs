@@ -27,7 +27,7 @@ public sealed class SystemUserControllerCreateTests : IClassFixture<ServiceProvi
         };
 
         var systemUserController =
-            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 
@@ -53,7 +53,7 @@ public sealed class SystemUserControllerCreateTests : IClassFixture<ServiceProvi
         };
 
         var systemUserController =
-            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 

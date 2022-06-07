@@ -13,7 +13,7 @@ public static class CommonControllerInjection
     {
         var mapper = MapperHelper.ConfigMapper();
         var systemUserQuery =
-            SystemUserInjectionService.GetSystemUserQuery(context, mongoDbContextFixture, mapper);
+            FinancialInformationInjectionService.GetSystemUserQuery(context, mongoDbContextFixture, mapper);
         var commonController =
             new CommonController(serviceProvider, systemUserQuery);
         return commonController;

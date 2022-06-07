@@ -16,6 +16,12 @@ public enum CustomFeature
     SystemUser,
 
     /// <summary>
+    ///     Get FinancialInformation.
+    /// </summary>
+    FinancialInformation,
+
+
+    /// <summary>
     ///     Get Common.
     /// </summary>
     Common,

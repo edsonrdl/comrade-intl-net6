@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Comrade.UnitTests.Tests.SystemUserTests.Bases;
 
-public sealed class SystemUserInjectionService
+public sealed class FinancialInformationInjectionService
 {
     public static SystemUserCommand GetSystemUserCommand(ComradeContext context, IMediator mediator)
     {
