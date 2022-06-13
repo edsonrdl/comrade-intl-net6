@@ -21,10 +21,10 @@ public static class Program
         BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.Standard));
         BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
 
-        var hostBuilder = CreateHostBuilder(args).Build();
         try
         {
             Log.Information("Starting up");
+            var hostBuilder = CreateHostBuilder(args).Build();
             hostBuilder.Run();
         }
         catch (Exception ex)

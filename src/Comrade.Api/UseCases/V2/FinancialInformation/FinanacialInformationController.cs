@@ -17,14 +17,14 @@ namespace Comrade.Api.UseCases.V2.FinancialInformationApi;
 [ApiController]
 public class FinancialInformationController : ControllerBase
 {
-    private readonly IFinancialInformationCommand -financialInformationCommand;
-    private readonly IFinancialInformationQuery -financialInformationQuery;
+    private readonly IFinancialInformationCommand _financialInformationCommand;
+    private readonly IFinancialInformationQuery _financialInformationQuery;
 
     public FinancialInformationController(IFinancialInformationCommand financialInformationCommand,
         IFinancialInformationQuery financialInformationQuery)
     {
-        -financialInformationCommand = financialInformationCommand;
-        -financialInformationQuery = financialInformationQuery;
+        _financialInformationCommand = financialInformationCommand;
+        _financialInformationQuery = financialInformationQuery;
     }
 
 
@@ -34,7 +34,7 @@ public class FinancialInformationController : ControllerBase
     {
         try
         {
-            var result = await -financialInformationQuery.GetAll(paginationQuery).ConfigureAwait(false);
+            var result = await _financialInformationQuery.GetAll(paginationQuery).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -51,7 +51,7 @@ public class FinancialInformationController : ControllerBase
     {
         try
         {
-            var result = await -financialInformationQuery.GetByIdDefault(financialInformationId).ConfigureAwait(false);
+            var result = await _financialInformationQuery.GetByIdDefault(financialInformationId).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -67,7 +67,7 @@ public class FinancialInformationController : ControllerBase
     {
         try
         {
-            var result = await -financialInformationCommand.Create(dto).ConfigureAwait(false);
+            var result = await _financialInformationCommand.Create(dto).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -83,7 +83,7 @@ public class FinancialInformationController : ControllerBase
     {
         try
         {
-            var result = await -financialInformationCommand.Edit(dto).ConfigureAwait(false);
+            var result = await _financialInformationCommand.Edit(dto).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -99,7 +99,7 @@ public class FinancialInformationController : ControllerBase
     {
         try
         {
-            var result = await -financialInformationCommand.Delete(financialInformationId).ConfigureAwait(false);
+            var result = await _financialInformationCommand.Delete(financialInformationId).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)

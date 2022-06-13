@@ -8,6 +8,10 @@ using Comrade.Application.Services.SystemUserServices.Commands;
 using Comrade.Application.Services.SystemUserServices.Dtos;
 using Comrade.Application.Services.SystemUserServices.Handlers;
 using Comrade.Application.Services.SystemUserServices.Queries;
+using Comrade.Application.Services.FinancialInformationServices.Commands;
+using Comrade.Application.Services.FinancialInformationServices.Dtos;
+using Comrade.Application.Services.FinancialInformationServices.Handlers;
+using Comrade.Application.Services.FinancialInformationServices.Queries;
 using Comrade.Core.AirplaneCore;
 using Comrade.Core.AirplaneCore.Commands;
 using Comrade.Core.AirplaneCore.Handlers;
@@ -24,9 +28,13 @@ using Comrade.Core.SystemUserCore.Commands;
 using Comrade.Core.SystemUserCore.Handlers;
 using Comrade.Core.SystemUserCore.UseCases;
 using Comrade.Core.SystemUserCore.Validations;
+using Comrade.Core.FinancialInformationCore;
+using Comrade.Core.FinancialInformationCore.Commands;
+using Comrade.Core.FinancialInformationCore.Handlers;
+using Comrade.Core.FinancialInformationCore.UseCases;
+using Comrade.Core.FinancialInformationCore.Validations;
 using Comrade.Domain.Bases;
 using MediatR;
-
 namespace Comrade.Api.Modules;
 
 /// <summary>
@@ -139,6 +147,45 @@ public static class UseCasesExtensions
         services.AddScoped<SystemUserEditValidation>();
         services.AddScoped<SystemUserDeleteValidation>();
         services.AddScoped<SystemUserCreateValidation>();
+
+        #endregion
+
+        #region FinancialInformation
+
+        // Application - Services
+        services.AddScoped<IFinancialInformationCommand, FinancialInformationCommand>();
+        services.AddScoped<IFinancialInformationQuery, FinancialInformationQuery>();
+
+        // Application - Handlers
+        services
+            .AddScoped<IRequestHandler<FinancialInformationCreateDto, SingleResultDto<EntityDto>>,
+                FinancialInformationCreateHandler>();
+        services
+            .AddScoped<IRequestHandler<FinancialInformationEditDto, SingleResultDto<EntityDto>>,
+                FinancialInformationEditHandler>();
+
+        // Core - UseCases
+        services.AddScoped<IUcFinancialInformationEdit, UcFinancialInformationEdit>();
+        services.AddScoped<IUcFinancialInformationCreate, UcFinancialInformationCreate>();
+        services.AddScoped<IUcFinancialInformationDelete, UcFinancialInformationDelete>();
+
+        // Core - CoreHandlers
+        services
+            .AddScoped<IRequestHandler<FinancialInformationCreateCommand, ISingleResult<Entity>>,
+                FinancialInformationCreateCoreHandler>();
+        services
+            .AddScoped<IRequestHandler<FinancialInformationDeleteCommand, ISingleResult<Entity>>,
+                FinancialInformationDeleteCoreHandler>();
+        services
+            .AddScoped<IRequestHandler<FinancialInformationEditCommand, ISingleResult<Entity>>,
+                FinancialInformationEditCoreHandler>();
+
+        // Core - Validations
+        services.AddScoped<FinancialInformationForgotPasswordValidation>();
+        services.AddScoped<FinancialInformationPasswordValidation>();
+        services.AddScoped<FinancialInformationEditValidation>();
+        services.AddScoped<FinancialInformationDeleteValidation>();
+        services.AddScoped<FinancialInformationCreateValidation>();
 
         #endregion
 
