@@ -6,22 +6,21 @@ using Comrade.Domain.Extensions;
 using Comrade.Domain.Models;
 
 namespace Comrade.Core.SecurityCore.Validation;
-
-public class SystemUserPasswordValidation
+public class FinancialInformationPasswordValidation
 {
     private readonly IPasswordHasher _passwordHasher;
-    private readonly ISystemUserRepository _systemUserRepository;
+    private readonly IFinancialInformationRepository _financialInformationRepository;
 
-    public SystemUserPasswordValidation(ISystemUserRepository systemUserRepository,
+    public FinancialInformationPasswordValidation(IFinancialInformationRepository financialInformationRepository,
         IPasswordHasher passwordHasher)
     {
-        _systemUserRepository = systemUserRepository;
+        _financialInformationRepository = financialInformationRepository;
         _passwordHasher = passwordHasher;
     }
 
-    public ISingleResult<SystemUser> Execute(Guid key, string password)
+    public ISingleResult<FinancialInformation> Execute(Guid key, string password)
     {
-        var usuSession = _systemUserRepository.GetById(key).Result;
+        var usuSession = _financialInformationRepository.GetById(key).Result;
         var keyValidation = usuSession != null;
 
         if (keyValidation)
@@ -30,22 +29,22 @@ public class SystemUserPasswordValidation
 
             if (!verified)
             {
-                return new SingleResult<SystemUser>(1001,
+                return new SingleResult<FinancialInformation>(1001,
                     "Usuário ou password informados não são válidos");
             }
 
             if (needsUpgrade)
             {
-                return new SingleResult<SystemUser>(1009,
+                return new SingleResult<FinancialInformation>(1009,
                     "Senha precisa ser atualizada");
             }
 
 
-            return new SingleResult<SystemUser>(usuSession);
+            return new SingleResult<FinancialInformation>(usuSession);
         }
 
 
-        return new SingleResult<SystemUser>(1001,
+        return new SingleResult<FinancialInformation>(1001,
             "Usuário ou password informados não são válidos");
     }
 }
