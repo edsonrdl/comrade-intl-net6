@@ -8,11 +8,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class SystemUserControllerEditTests : IClassFixture<ServiceProviderFixture>
+public class FinancialInformationControllerEditTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemUserControllerEditTests(ServiceProviderFixture fixture)
+    public FinancialInformationControllerEditTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
@@ -28,7 +28,7 @@ public class SystemUserControllerEditTests : IClassFixture<ServiceProviderFixtur
 
         var systemUserId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
 
-        var testObject = new SystemUserEditDto
+        var testObject = new FinancialInformationEditDto
         {
             Id = systemUserId,
             Name = changeName,

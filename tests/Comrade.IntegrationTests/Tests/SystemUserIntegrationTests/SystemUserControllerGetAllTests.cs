@@ -6,11 +6,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class SystemUserControllerGetAllTests : IClassFixture<ServiceProviderFixture>
+public class FinancialInformationControllerGetAllTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemUserControllerGetAllTests(ServiceProviderFixture fixture)
+    public FinancialInformationControllerGetAllTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
@@ -27,7 +27,7 @@ public class SystemUserControllerGetAllTests : IClassFixture<ServiceProviderFixt
 
         if (result is ObjectResult okResult)
         {
-            var actualResultValue = okResult.Value as PageResultDto<SystemUserDto>;
+            var actualResultValue = okResult.Value as PageResultDto<FinancialInformationDto>;
             Assert.NotNull(actualResultValue);
             Assert.Equal(200, actualResultValue?.Code);
             Assert.NotNull(actualResultValue?.Data);

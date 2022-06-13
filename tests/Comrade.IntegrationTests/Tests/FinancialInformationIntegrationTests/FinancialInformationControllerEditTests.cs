@@ -8,21 +8,22 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderFixture>
+public class SystemUserControllerEditTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemUserControllerEditErrorTests(ServiceProviderFixture fixture)
+    public SystemUserControllerEditTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
     }
 
     [Fact]
-    public async Task SystemUserController_Edit_Error()
+    public async Task SystemUserController_Edit()
     {
-        var changeName = "new Name";
+        var changeName = "new name";
         var changeEmail = "novo@email.com";
+        var changePassword = "NovaPassword";
         var changeRegistration = "NovaRegistration";
 
         var systemUserId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
@@ -30,8 +31,12 @@ public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderF
         var testObject = new FinancialInformationEditDto
         {
             Id = systemUserId,
-            Name = changeName
+            Name = changeName,
+            Email = changeEmail,
+            Password = changePassword,
+            Registration = changeRegistration
         };
+
 
         var systemUserController =
             FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
@@ -39,17 +44,17 @@ public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderF
                 _fixture.Mediator);
         var result = await systemUserController.Edit(testObject);
 
-        if (result is ObjectResult okResult)
+        if (result is ObjectResult objectResult)
         {
-            var actualResultValue = okResult.Value as SingleResultDto<EntityDto>;
+            var actualResultValue = objectResult.Value as SingleResultDto<EntityDto>;
             Assert.NotNull(actualResultValue);
-            Assert.Equal(409, actualResultValue?.Code);
+            Assert.Equal(204, actualResultValue?.Code);
         }
 
         var repository = new SystemUserRepository(_fixture.SqlContextFixture);
         var user = await repository.GetById(systemUserId);
-        Assert.NotEqual(changeName, user!.Name);
-        Assert.NotEqual(changeEmail, user.Email);
-        Assert.NotEqual(changeRegistration, user.Registration);
+        Assert.Equal(changeName, user!.Name);
+        Assert.Equal(changeEmail, user.Email);
+        Assert.Equal(changeRegistration, user.Registration);
     }
 }

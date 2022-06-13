@@ -7,11 +7,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class FinancialInformationControllerGetAllPaginatedTests : IClassFixture<ServiceProviderFixture>
+public class SystemUserControllerGetAllPaginatedTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public FinancialInformationControllerGetAllPaginatedTests(ServiceProviderFixture fixture)
+    public SystemUserControllerGetAllPaginatedTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);

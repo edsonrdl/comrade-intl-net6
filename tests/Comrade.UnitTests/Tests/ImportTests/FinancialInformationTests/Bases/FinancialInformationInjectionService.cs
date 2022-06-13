@@ -10,7 +10,7 @@ namespace Comrade.UnitTests.Tests.SystemUserTests.Bases;
 
 public sealed class FinancialInformationInjectionService
 {
-    public static SystemUserCommand GetSystemUserCommand(ComradeContext context, IMediator mediator)
+    public static FinancialInformationCommand GetSystemUserCommand(ComradeContext context, IMediator mediator)
     {
         var ucSystemUserDelete =
             new UcSystemUserDelete(mediator);
@@ -18,7 +18,7 @@ public sealed class FinancialInformationInjectionService
         return new SystemUserCommand(ucSystemUserDelete, mediator);
     }
 
-    public static SystemUserQuery GetSystemUserQuery(ComradeContext context,
+    public static FinancialInformationQuery GetSystemUserQuery(ComradeContext context,
         MongoDbContext mongoDbContextFixture, IMapper mapper)
     {
         var systemUserRepository = new SystemUserRepository(context);

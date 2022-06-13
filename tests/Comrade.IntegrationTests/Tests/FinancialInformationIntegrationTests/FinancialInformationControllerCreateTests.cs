@@ -1,9 +1,9 @@
 using Comrade.Application.Bases;
-using Comrade.Application.Services.SystemUserServices.Dtos;
-using Comrade.UnitTests.Tests.SystemUserTests.Bases;
+using Comrade.Application.Services.FinancialInformationServices.Dtos;
+using Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
 using Xunit;
 
-namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
+namespace Comrade.IntegrationTests.Tests.FinancialInformationIntegrationTests;
 
 public sealed class FinancialInformationControllerCreateTests : IClassFixture<ServiceProviderFixture>
 {
@@ -16,7 +16,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
 
 
     [Fact]
-    public async Task SystemUserController_Create()
+    public async Task FinancialInformationController_Create()
     {
         var testObject = new FinancialInformationCreateDto
         {
@@ -26,12 +26,12 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
             Registration = "123"
         };
 
-        var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+        var financialInformationController =
+            FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 
-        var result = await systemUserController.Create(testObject);
+        var result = await financialInformationController.Create(testObject);
 
         if (result is ObjectResult okResult)
         {
@@ -43,7 +43,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
 
 
     [Fact]
-    public async Task SystemUserController_Create_Error()
+    public async Task FinancialInformationController_Create_Error()
     {
         var testObject = new FinancialInformationCreateDto
         {
@@ -52,12 +52,12 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
             Registration = "123"
         };
 
-        var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+        var financialInformationController =
+            FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 
-        var result = await systemUserController.Create(testObject);
+        var result = await financialInformationController.Create(testObject);
 
         if (result is ObjectResult okResult)
         {

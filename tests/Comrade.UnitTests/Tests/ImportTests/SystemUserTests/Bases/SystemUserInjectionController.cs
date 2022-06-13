@@ -7,7 +7,7 @@ namespace Comrade.UnitTests.Tests.SystemUserTests.Bases;
 
 public class FinancialInformationInjectionController
 {
-    public static SystemUserController GetSystemUserController(ComradeContext context,
+    public static FinanacialInformationController GetSystemUserController(ComradeContext context,
         MongoDbContext mongoDbContextFixture, IMediator mediator)
     {
         var mapper = MapperHelper.ConfigMapper();

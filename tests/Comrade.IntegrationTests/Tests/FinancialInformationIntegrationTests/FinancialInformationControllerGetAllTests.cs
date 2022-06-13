@@ -1,5 +1,4 @@
 ﻿using Comrade.Application.Bases;
-using Comrade.Application.Paginations;
 using Comrade.Application.Services.SystemUserServices.Dtos;
 using Comrade.UnitTests.DataInjectors;
 using Comrade.UnitTests.Tests.SystemUserTests.Bases;
@@ -7,25 +6,24 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class FinancialInformationControllerGetAllPaginatedTests : IClassFixture<ServiceProviderFixture>
+public class SystemUserControllerGetAllTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public FinancialInformationControllerGetAllPaginatedTests(ServiceProviderFixture fixture)
+    public SystemUserControllerGetAllTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
     }
 
     [Fact]
-    public async Task SystemUserController_GetAll_Paginated()
+    public async Task SystemUserController_GetAll()
     {
         var systemUserController =
             FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
-        var paginationQuery = new PaginationQuery();
-        var result = await systemUserController.GetAll(paginationQuery);
+        var result = await systemUserController.GetAll(null);
 
         if (result is ObjectResult okResult)
         {
