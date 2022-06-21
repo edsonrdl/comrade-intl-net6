@@ -6,5 +6,5 @@ namespace Comrade.Core.FinancialInformationCore;
 
 public interface IFinancialInformationRepository : IRepository<FinancialInformation>
 {
-    IQueryable<Lookup>? FindByName(string name);
+    IQueryable<Lookup>? FindByType(string type);
 }

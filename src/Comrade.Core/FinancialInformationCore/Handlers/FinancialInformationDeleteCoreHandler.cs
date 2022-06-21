@@ -49,7 +49,7 @@ public class
         _repository.Remove(financialInformationId);
         await _repository.CommitTransactionAsync().ConfigureAwait(false);
 
-        _mongoDbContext.DeleteOne<FinancialInformation>(financialInformationId);
+        //_mongoDbContext.DeleteOne<FinancialInformation>(financialInformationId);
 
         return new DeleteResult<Entity>(true,
             BusinessMessage.MSG03);

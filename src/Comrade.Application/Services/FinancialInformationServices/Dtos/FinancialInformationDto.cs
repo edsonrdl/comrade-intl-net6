@@ -4,9 +4,13 @@ namespace Comrade.Application.Services.FinancialInformationServices.Dtos;
 
 public class FinancialInformationDto : EntityDto
 {
-    public string? Name { get; set; }
-    public string? Email { get; set; }
-    public string? Password { get; set; }
-    public string? Registration { get; set; }
-    public DateTime? RegisterDate { get; set; }
+    public string? Type { get; set; }
+    public string? Date { get; set; }
+    public string? Value { get; set; }
+    public string? CPF { get; set; }
+    public string? Card { get; set; }
+    public string? Hour { get; set; }
+    public string? Shop { get; set; }
+    public string? Store { get; set; }
+   
 }

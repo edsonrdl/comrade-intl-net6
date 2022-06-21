@@ -11,5 +11,5 @@ public interface IFinancialInformationQuery
     Task<IPageResultDto<FinancialInformationDto>> GetAll(PaginationQuery? paginationQuery = null);
     Task<ISingleResultDto<FinancialInformationDto>> GetByIdDefault(Guid id);
     Task<ISingleResultDto<FinancialInformationDto>> GetByIdMongo(Guid id);
-    Task<ListResultDto<LookupDto>> FindByName(string name);
+    Task<ListResultDto<LookupDto>> FindByType(string type);
 }

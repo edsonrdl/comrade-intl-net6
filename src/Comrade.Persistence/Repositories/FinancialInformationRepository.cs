@@ -18,13 +18,15 @@ public class FinancialInformationRepository : Repository<FinancialInformation>, 
     }
 
 
-    public IQueryable<Lookup>? FindByName(string name)
+    public IQueryable<Lookup>? FindByType(string type)
     {
         var result = _context.FinancialInformations
-            .Where(x => x.Name.Contains(name)).Take(30)
-            .OrderBy(x => x.Name)
-            .Select(s => new Lookup { Key = s.Id, Value = s.Name });
+            .Where(x => x.Type.Contains(type)).Take(30)
+            .OrderBy(x => x.Id)
+            .Select(s => new Lookup { Key = s.Id, Value = s.Type });
 
         return result;
+    
+    
     }
 }

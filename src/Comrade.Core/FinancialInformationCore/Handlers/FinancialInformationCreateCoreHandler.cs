@@ -37,8 +37,7 @@ public class
             return validate;
         }
 
-        request.Password = _passwordHasher.Hash(request.Password);
-        request.RegisterDate = DateTimeBrasilia.GetDateTimeBrasilia();
+     
 
         await _repository.Add(request).ConfigureAwait(false);
 

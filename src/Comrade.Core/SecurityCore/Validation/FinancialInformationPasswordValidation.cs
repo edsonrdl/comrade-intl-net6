@@ -18,33 +18,5 @@ public class FinancialInformationPasswordValidation
         _passwordHasher = passwordHasher;
     }
 
-    public ISingleResult<FinancialInformation> Execute(Guid key, string password)
-    {
-        var usuSession = _financialInformationRepository.GetById(key).Result;
-        var keyValidation = usuSession != null;
-
-        if (keyValidation)
-        {
-            var (verified, needsUpgrade) = _passwordHasher.Check(usuSession!.Password, password);
-
-            if (!verified)
-            {
-                return new SingleResult<FinancialInformation>(1001,
-                    "Usuário ou password informados não são válidos");
-            }
-
-            if (needsUpgrade)
-            {
-                return new SingleResult<FinancialInformation>(1009,
-                    "Senha precisa ser atualizada");
-            }
-
-
-            return new SingleResult<FinancialInformation>(usuSession);
-        }
-
-
-        return new SingleResult<FinancialInformation>(1001,
-            "Usuário ou password informados não são válidos");
-    }
+   
 }

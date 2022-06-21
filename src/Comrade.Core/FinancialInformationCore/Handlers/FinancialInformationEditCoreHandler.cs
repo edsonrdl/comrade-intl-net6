@@ -52,7 +52,7 @@ public class
         _repository.Update(obj);
         await _repository.CommitTransactionAsync().ConfigureAwait(false);
 
-        _mongoDbContext.ReplaceOne(obj);
+        //_mongoDbContext.ReplaceOne(obj);
 
         return new EditResult<Entity>(true,
             BusinessMessage.MSG02);
@@ -60,8 +60,15 @@ public class
 
     private static void HydrateValues(FinancialInformation target, FinancialInformation source)
     {
-        target.Name = source.Name;
-        target.Email = source.Email;
-        target.Registration = source.Registration;
+        target.Id = source.Id;
+        target.Type = source.Type;
+        target.Date = source.Date;
+        target.Value = source.Value;
+        target.Date = source.Date;
+        target.CPF = source.CPF;
+        target.Card = source.Card;
+        target.Hour = source.Hour;
+        target.Shop = source.Shop;
+        target.Store = source.Store;
     }
 }

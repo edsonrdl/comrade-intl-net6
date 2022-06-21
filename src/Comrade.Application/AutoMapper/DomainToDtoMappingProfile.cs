@@ -21,7 +21,7 @@ public class DomainToDtoMappingProfile : Profile
         CreateMap<SystemUser, AuthenticationDto>();
         CreateMap<FinancialInformation, FinancialInformationDto>();
         CreateMap<FinancialInformation, AuthenticationDto>()
-            .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+            .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src.Id));
+            
     }
 }

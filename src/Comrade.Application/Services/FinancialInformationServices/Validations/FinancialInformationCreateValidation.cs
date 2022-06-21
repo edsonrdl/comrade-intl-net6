@@ -6,9 +6,14 @@ public class FinancialInformationCreateValidation : FinancialInformationValidati
 {
     public FinancialInformationCreateValidation()
     {
-        ValidateName();
-        ValidateEmail();
-        PasswordValidation();
-        ValidateRegistration();
+        ValidateType();
+        ValidateDate();
+        ValidateValue();
+        ValidateCPF();
+        ValidateCard();
+        ValidateHour();
+        ValidateShop();
+        ValidateStore();
+   
     }
 }

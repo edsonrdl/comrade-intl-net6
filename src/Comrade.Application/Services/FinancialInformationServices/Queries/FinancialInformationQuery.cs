@@ -49,9 +49,9 @@ public class FinancialInformationQuery : IFinancialInformationQuery
         return new PageResultDto<FinancialInformationDto>(paginationFilter, list);
     }
 
-    public async Task<ListResultDto<LookupDto>> FindByName(string name)
+    public async Task<ListResultDto<LookupDto>> FindByType(string type)
     {
-        var list = await Task.Run(() => _repository.FindByName(name)
+        var list = await Task.Run(() => _repository.FindByType(type)
             .ProjectTo<LookupDto>(_mapper.ConfigurationProvider)
             .ToList()).ConfigureAwait(false);
 

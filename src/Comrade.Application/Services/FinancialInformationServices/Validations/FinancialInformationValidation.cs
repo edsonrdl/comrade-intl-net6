@@ -8,36 +8,68 @@ namespace Comrade.Application.Services.FinancialInformationServices.Validations;
 public class FinancialInformationValidation<TDto> : DtoValidation<TDto>
     where TDto : FinancialInformationDto
 {
-    protected void ValidateName()
+    protected void ValidateType()
     {
-        RuleFor(v => v.Name)
+        RuleFor(v => v.Type)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(255).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Name");
+            .MaximumLength(1).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Type");
     }
 
-    protected void ValidateEmail()
+    protected void ValidateDate()
     {
-        RuleFor(v => v.Email)
-            .MaximumLength(255).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Email");
+        RuleFor(v => v.Date)
+            .MaximumLength(8).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Date");
     }
 
-    protected void PasswordValidation()
+    protected void ValidateValue()
     {
-        RuleFor(v => v.Password)
+        RuleFor(v => v.Value)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MinimumLength(4).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .MaximumLength(127).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Password");
+            .MinimumLength(01).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .MaximumLength(10).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Value");
     }
 
 
-    protected void ValidateRegistration()
+    protected void ValidateCPF()
     {
-        RuleFor(v => v.Registration)
+        RuleFor(v => v.CPF)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(255).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Registration");
+            .MaximumLength(11).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("CPF");
     }
+    protected void ValidateCard()
+    {
+        RuleFor(v => v.Card)
+            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
+            .MaximumLength(12).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Card");
+    }
+
+
+    protected void ValidateHour()
+    {
+        RuleFor(v => v.Hour)
+            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
+            .MaximumLength(6).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Hour");
+    }
+    protected void ValidateShop()
+    {
+        RuleFor(v => v.Shop)
+            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
+            .MaximumLength(14).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Shop");
+    }
+    protected void ValidateStore()
+    {
+        RuleFor(v => v.Store)
+            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
+            .MaximumLength(19).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .WithName("Store");
+    }
+
+
 }

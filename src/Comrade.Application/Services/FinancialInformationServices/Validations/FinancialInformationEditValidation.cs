@@ -6,9 +6,13 @@ public class FinancialInformationEditValidation : FinancialInformationValidation
 {
     public FinancialInformationEditValidation()
     {
-        ValidateName();
-        ValidateEmail();
-        PasswordValidation();
-        ValidateRegistration();
+        ValidateType();
+        ValidateDate();
+        ValidateValue();
+        ValidateCPF();
+        ValidateCard();
+        ValidateHour();
+        ValidateShop();
+        ValidateStore();
     }
 }

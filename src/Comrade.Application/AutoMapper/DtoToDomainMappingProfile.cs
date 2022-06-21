@@ -37,8 +37,7 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<FinancialInformationDto, FinancialInformationCreateCommand>();
         CreateMap<FinancialInformationDto, FinancialInformationEditCommand>();
         CreateMap<AuthenticationDto, FinancialInformation>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Key))
-            .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Key));
         CreateMap<AuthenticationDto, UpdatePasswordCommand>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Key))
             .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
