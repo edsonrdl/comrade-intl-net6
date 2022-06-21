@@ -93,7 +93,7 @@ public class FinancialInformationController : ControllerBase
         }
     }
 
-    [HttpDelete("delete/{financialInformationId:int}")]
+    [HttpDelete("delete/{financialInformationId:Guid}")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
     public async Task<IActionResult> Delete([FromRoute][Required] Guid financialInformationId)
     {
