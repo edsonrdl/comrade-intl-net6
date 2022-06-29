@@ -77,6 +77,21 @@ public class FinancialInformationController : ControllerBase
         }
     }
 
+    [HttpPost("create-many")]
+    [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
+    public async Task<IActionResult> CreateMany([FromBody][Required] FinancialInformationCreatemanyto dto )
+    {
+        try
+        {
+            var result = await _financialInformationCommand.CreateList(dto).ConfigureAwait(false);
+            return StatusCode(result.Code, result);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError,
+                new SingleResultDto<EntityDto>(e));
+        }
+    }
     [HttpPut("edit")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
     public async Task<IActionResult> Edit([FromBody][Required] FinancialInformationEditDto dto)
