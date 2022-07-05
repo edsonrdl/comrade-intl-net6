@@ -78,12 +78,12 @@ public class FinancialInformationController : ControllerBase
     }
 
     [HttpPost("create-many")]
-    [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-    public async Task<IActionResult> CreateMany([FromBody][Required] FinancialInformationCreatemanyto dto )
+    [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.CreateMany))]
+    public async Task<IActionResult> CreateMany([FromBody][Required] FinancialInformationCreateManyDto dto)
     {
         try
         {
-            var result = await _financialInformationCommand.CreateList(dto).ConfigureAwait(false);
+            var result = await _financialInformationCommand.CreateMany(dto).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
