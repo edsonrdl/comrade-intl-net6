@@ -161,18 +161,28 @@ public static class UseCasesExtensions
             .AddScoped<IRequestHandler<FinancialInformationCreateDto, SingleResultDto<EntityDto>>,
                 FinancialInformationCreateHandler>();
         services
+            .AddScoped<IRequestHandler<FinancialInformationCreateManyDto, SingleResultDto<EntityDto>>,
+                FinancialInformationCreateManyHandler>();
+        services
+            .AddScoped<IRequestHandler<FinancialInformationCreateManyDto, SingleResultDto<EntityDto>>,
+                FinancialInformationCreateManyHandler>();
+        services
             .AddScoped<IRequestHandler<FinancialInformationEditDto, SingleResultDto<EntityDto>>,
                 FinancialInformationEditHandler>();
 
         // Core - UseCases
         services.AddScoped<IUcFinancialInformationEdit, UcFinancialInformationEdit>();
         services.AddScoped<IUcFinancialInformationCreate, UcFinancialInformationCreate>();
+        services.AddScoped<IUcFinancialInformationCreateMany, UcFinancialInformationCreateMany>();
         services.AddScoped<IUcFinancialInformationDelete, UcFinancialInformationDelete>();
 
         // Core - CoreHandlers
         services
             .AddScoped<IRequestHandler<FinancialInformationCreateCommand, ISingleResult<Entity>>,
                 FinancialInformationCreateCoreHandler>();
+        services
+            .AddScoped<IRequestHandler<FinancialInformationCreateManyCommand, ISingleResult<Entity>>,
+                FinancialInformationCreateManyCoreHandler>();
         services
             .AddScoped<IRequestHandler<FinancialInformationDeleteCommand, ISingleResult<Entity>>,
                 FinancialInformationDeleteCoreHandler>();
@@ -186,6 +196,7 @@ public static class UseCasesExtensions
         services.AddScoped<FinancialInformationEditValidation>();
         services.AddScoped<FinancialInformationDeleteValidation>();
         services.AddScoped<FinancialInformationCreateValidation>();
+        services.AddScoped<FinancialInformationCreateManyValidation>();
 
         #endregion
 

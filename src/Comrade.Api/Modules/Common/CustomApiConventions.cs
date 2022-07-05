@@ -19,6 +19,23 @@ public static class CustomApiConventions
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
         object model)
     {
+
+        // Convention
+    }
+    /// <summary>
+    /// </summary>
+    [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
+    [ProducesDefaultResponseType]
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(409)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public static void CreateMany(
+        [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Any)]
+        [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
+        object model)
+    {
+
         // Convention
     }
 
