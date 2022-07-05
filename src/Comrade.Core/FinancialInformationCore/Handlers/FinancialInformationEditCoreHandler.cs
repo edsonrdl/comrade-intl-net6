@@ -65,7 +65,7 @@ public class
         target.Date = source.Date;
         target.Value = source.Value;
         target.Date = source.Date;
-        target.CPF = source.CPF;
+        target.Cpf = source.Cpf;
         target.Card = source.Card;
         target.Hour = source.Hour;
         target.Shop = source.Shop;
