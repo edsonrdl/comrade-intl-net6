@@ -42,7 +42,6 @@ public class FinancialInformationQuery : IFinancialInformationQuery
         var skip = (paginationFilter.PageNumber - 1) * paginationFilter.PageSize;
 
         list = await Task.Run(() => _repository.GetAllAsNoTracking().Skip(skip)
-            .Take(paginationFilter.PageSize)
             .ProjectTo<FinancialInformationDto>(_mapper.ConfigurationProvider)
             .ToList()).ConfigureAwait(false);
 

@@ -33,12 +33,12 @@ public class FinancialInformationValidation<TDto> : DtoValidation<TDto>
     }
 
 
-    protected void ValidateCPF()
+    protected void ValidateCpf()
     {
-        RuleFor(v => v.CPF)
+        RuleFor(v => v.Cpf)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
             .MaximumLength(11).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("CPF");
+            .WithName("Cpf");
     }
     protected void ValidateCard()
     {

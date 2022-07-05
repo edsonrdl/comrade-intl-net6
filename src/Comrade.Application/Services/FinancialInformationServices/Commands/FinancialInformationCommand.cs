@@ -22,7 +22,10 @@ public class FinancialInformationCommand : IFinancialInformationCommand
     {
         return await _mediator.Send(dto).ConfigureAwait(false);
     }
-
+    public async Task<ISingleResultDto<EntityDto>> CreateMany(FinancialInformationCreateManyDto dto)
+    {
+        return await _mediator.Send(dto).ConfigureAwait(false);
+    }
     public async Task<ISingleResultDto<EntityDto>> Edit(FinancialInformationEditDto dto)
     {
         return await _mediator.Send(dto).ConfigureAwait(false);

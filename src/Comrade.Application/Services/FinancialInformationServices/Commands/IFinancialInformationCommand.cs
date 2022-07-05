@@ -7,6 +7,7 @@ namespace Comrade.Application.Services.FinancialInformationServices.Commands;
 public interface IFinancialInformationCommand
 {
     Task<ISingleResultDto<EntityDto>> Create(FinancialInformationCreateDto dto);
+    Task<ISingleResultDto<EntityDto>> CreateMany(FinancialInformationCreateManyDto dto);
     Task<ISingleResultDto<EntityDto>> Edit(FinancialInformationEditDto dto);
     Task<ISingleResultDto<EntityDto>> Delete(Guid id);
 }

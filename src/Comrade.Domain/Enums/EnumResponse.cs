@@ -5,6 +5,7 @@ public enum EnumResponse
     None,
     Ok = 200,
     Created = 201,
+    Manyd = 201,
     Accepted = 202,
     NonAuthoritativeInformation = 203,
     NoContent = 204,
