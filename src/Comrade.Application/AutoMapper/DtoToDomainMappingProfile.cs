@@ -35,6 +35,7 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<AirplaneEditDto, AirplaneEditCommand>();
         CreateMap<FinancialInformationDto, FinancialInformation>();
         CreateMap<FinancialInformationDto, FinancialInformationCreateCommand>();
+        CreateMap<FinancialInformationCreateManyDto, FinancialInformationCreateManyCommand>();
         CreateMap<FinancialInformationDto, FinancialInformationEditCommand>();
         CreateMap<AuthenticationDto, FinancialInformation>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Key));
