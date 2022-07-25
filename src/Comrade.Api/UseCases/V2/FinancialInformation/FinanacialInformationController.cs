@@ -7,6 +7,7 @@ using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.Application.Services.FinancialInformationServices.Queries;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace Comrade.Api.UseCases.V2.FinancialInformationApi;
 
@@ -65,6 +66,7 @@ public class FinancialInformationController : ControllerBase
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
     public async Task<IActionResult> Create([FromBody][Required] FinancialInformationCreateDto dto)
     {
+        var k= dto.DateTime ;
         try
         {
             var result = await _financialInformationCommand.Create(dto).ConfigureAwait(false);
