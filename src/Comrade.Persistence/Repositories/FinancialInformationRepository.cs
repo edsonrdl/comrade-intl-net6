@@ -1,5 +1,6 @@
 using Comrade.Core.FinancialInformationCore;
 using Comrade.Domain.Bases;
+using Comrade.Domain.Enums;
 using Comrade.Domain.Models;
 using Comrade.Persistence.Bases;
 using Comrade.Persistence.DataAccess;
@@ -18,15 +19,12 @@ public class FinancialInformationRepository : Repository<FinancialInformation>, 
     }
 
 
-    public IQueryable<Lookup>? FindByType(string type)
+    public IQueryable<Lookup>? FindByType(EnumTypeFinancial type)
     {
         var result = _context.FinancialInformations
-            .Where(x => x.Type.Contains(type)).Take(30)
+            .Where(x => x.Type.Equals(type)).Take(30)
             .OrderBy(x => x.Id)
-            .Select(s => new Lookup { Key = s.Id, Value = s.Type });
-
+            .Select(s => new Lookup { Key = s.Id, Value = s.Type.ToString() });
         return result;
-    
-    
     }
 }
