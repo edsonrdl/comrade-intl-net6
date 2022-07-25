@@ -27,14 +27,14 @@ public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderF
 
         var systemUserId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
 
-        var testObject = new FinancialInformationEditDto
+        var testObject = new SystemUserEditDto
         {
             Id = systemUserId,
             Name = changeName
         };
 
         var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
         var result = await systemUserController.Edit(testObject);

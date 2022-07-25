@@ -5,11 +5,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public sealed class FinancialInformationControllerCreateTests : IClassFixture<ServiceProviderFixture>
+public sealed class SystemUserControllerCreateTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public FinancialInformationControllerCreateTests(ServiceProviderFixture fixture)
+    public SystemUserControllerCreateTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
     }
@@ -18,7 +18,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     [Fact]
     public async Task SystemUserController_Create()
     {
-        var testObject = new FinancialInformationCreateDto
+        var testObject = new SystemUserCreateDto
         {
             Name = "111",
             Email = "777@testObject",
@@ -27,7 +27,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
         };
 
         var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 
@@ -45,7 +45,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     [Fact]
     public async Task SystemUserController_Create_Error()
     {
-        var testObject = new FinancialInformationCreateDto
+        var testObject = new SystemUserCreateDto
         {
             Email = "777@testObject",
             Password = "123456",
@@ -53,7 +53,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
         };
 
         var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 

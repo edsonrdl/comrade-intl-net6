@@ -7,11 +7,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class FinancialInformationControllerGetTests : IClassFixture<ServiceProviderFixture>
+public class SystemUserControllerGetTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public FinancialInformationControllerGetTests(ServiceProviderFixture fixture)
+    public SystemUserControllerGetTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
@@ -22,14 +22,14 @@ public class FinancialInformationControllerGetTests : IClassFixture<ServiceProvi
     {
         var systemUserId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
         var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+            SystemUserInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
         var result = await systemUserController.GetById(systemUserId);
 
         if (result is ObjectResult okResult)
         {
-            var actualResultValue = okResult.Value as SingleResultDto<FinancialInformationDto>;
+            var actualResultValue = okResult.Value as SingleResultDto<SystemUserDto>;
             Assert.NotNull(actualResultValue);
             Assert.Equal(200, actualResultValue?.Code);
             Assert.NotNull(actualResultValue?.Data);

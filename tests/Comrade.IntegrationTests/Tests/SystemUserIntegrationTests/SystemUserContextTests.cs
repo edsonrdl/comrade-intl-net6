@@ -5,11 +5,11 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
 
-public class FinancialInformationContextTests : IClassFixture<ServiceProviderFixture>
+public class SystemUserContextTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public FinancialInformationContextTests(ServiceProviderFixture fixture)
+    public SystemUserContextTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
