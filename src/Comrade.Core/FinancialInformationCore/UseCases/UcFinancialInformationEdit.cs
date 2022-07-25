@@ -31,12 +31,10 @@ public class UcFinancialInformationEdit : UseCase, IUcFinancialInformationEdit
     {
         target.Id = source.Id;
         target.Type = source.Type;
-        target.Date = source.Date;
+        target.DateTime = source.DateTime;
         target.Value = source.Value;
-        target.Date = source.Date;
         target.Cpf = source.Cpf;
         target.Card = source.Card;
-        target.Hour = source.Hour;
         target.Shop = source.Shop;
         target.Store = source.Store;
     }
