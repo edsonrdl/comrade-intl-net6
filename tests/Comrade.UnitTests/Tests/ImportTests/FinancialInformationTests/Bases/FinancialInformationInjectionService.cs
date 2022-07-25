@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Comrade.Application.Services.FinancialInformationServices.Commands;
+using Comrade.Application.Services.FinancialInformationServices.Queries;
 using Comrade.Application.Services.SystemUserServices.Commands;
 using Comrade.Application.Services.SystemUserServices.Queries;
+using Comrade.Core.FinancialInformationCore.UseCases;
 using Comrade.Core.SystemUserCore.UseCases;
 using Comrade.Persistence.DataAccess;
 using Comrade.Persistence.Repositories;
@@ -10,19 +13,19 @@ namespace Comrade.UnitTests.Tests.SystemUserTests.Bases;
 
 public sealed class FinancialInformationInjectionService
 {
-    public static FinancialInformationCommand GetSystemUserCommand(ComradeContext context, IMediator mediator)
+    public static FinancialInformationCommand GetFinancialInformationCommand(ComradeContext context, IMediator mediator)
     {
         var ucSystemUserDelete =
-            new UcSystemUserDelete(mediator);
+            new UcFinancialInformationDelete(mediator);
 
-        return new SystemUserCommand(ucSystemUserDelete, mediator);
+        return new FinancialInformationCommand(ucSystemUserDelete, mediator);
     }
 
-    public static FinancialInformationQuery GetSystemUserQuery(ComradeContext context,
+    public static FinancialInformationQuery GetFinancialInformationQuery(ComradeContext context,
         MongoDbContext mongoDbContextFixture, IMapper mapper)
     {
-        var systemUserRepository = new SystemUserRepository(context);
+        var repository = new FinancialInformationRepository(context);
 
-        return new SystemUserQuery(systemUserRepository, mongoDbContextFixture, mapper);
+        return new FinancialInformationQuery(repository, mongoDbContextFixture, mapper);
     }
 }

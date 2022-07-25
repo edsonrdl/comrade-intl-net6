@@ -1,6 +1,7 @@
 ﻿using Comrade.Api.UseCases.V2.FinancialInformationApi;
 using Comrade.Persistence.DataAccess;
 using Comrade.UnitTests.Helpers;
+using Comrade.UnitTests.Tests.SystemUserTests.Bases;
 using MediatR;
 
 namespace Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
