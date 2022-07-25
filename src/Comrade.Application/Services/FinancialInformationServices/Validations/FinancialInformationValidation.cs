@@ -11,28 +11,21 @@ public class FinancialInformationValidation<TDto> : DtoValidation<TDto>
     protected void ValidateType()
     {
         RuleFor(v => v.Type)
-            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(1).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .NotNull().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
             .WithName("Type");
     }
-
-    protected void ValidateDate()
+    protected void ValidateDateTime()
     {
-        RuleFor(v => v.Date)
-            .MaximumLength(8).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Date");
+        RuleFor(v => v.DateTime)
+            .NotNull().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
+            .WithName("DateTime");
     }
-
     protected void ValidateValue()
     {
         RuleFor(v => v.Value)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MinimumLength(01).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .MaximumLength(10).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
             .WithName("Value");
     }
-
-
     protected void ValidateCpf()
     {
         RuleFor(v => v.Cpf)
@@ -46,15 +39,6 @@ public class FinancialInformationValidation<TDto> : DtoValidation<TDto>
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
             .MaximumLength(12).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
             .WithName("Card");
-    }
-
-
-    protected void ValidateHour()
-    {
-        RuleFor(v => v.Hour)
-            .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(6).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
-            .WithName("Hour");
     }
     protected void ValidateShop()
     {

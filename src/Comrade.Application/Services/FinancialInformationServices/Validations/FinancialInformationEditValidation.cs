@@ -7,11 +7,10 @@ public class FinancialInformationEditValidation : FinancialInformationValidation
     public FinancialInformationEditValidation()
     {
         ValidateType();
-        ValidateDate();
+        ValidateDateTime();
         ValidateValue();
         ValidateCpf();
         ValidateCard();
-        ValidateHour();
         ValidateShop();
         ValidateStore();
     }

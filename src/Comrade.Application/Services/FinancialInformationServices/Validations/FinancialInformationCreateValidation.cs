@@ -7,11 +7,10 @@ public class FinancialInformationCreateValidation : FinancialInformationValidati
     public FinancialInformationCreateValidation()
     {
         ValidateType();
-        ValidateDate();
+        ValidateDateTime();
         ValidateValue();
         ValidateCpf();
         ValidateCard();
-        ValidateHour();
         ValidateShop();
         ValidateStore();
    
