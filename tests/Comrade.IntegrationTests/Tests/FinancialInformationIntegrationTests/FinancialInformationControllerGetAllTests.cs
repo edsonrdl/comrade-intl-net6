@@ -1,29 +1,29 @@
 ﻿using Comrade.Application.Bases;
-using Comrade.Application.Services.SystemUserServices.Dtos;
+using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.UnitTests.DataInjectors;
-using Comrade.UnitTests.Tests.SystemUserTests.Bases;
+using Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
 using Xunit;
 
-namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
+namespace Comrade.IntegrationTests.Tests.FinancialInformationIntegrationTests;
 
-public class SystemUserControllerGetAllTests : IClassFixture<ServiceProviderFixture>
+public class FinancialInformationControllerGetAllTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemUserControllerGetAllTests(ServiceProviderFixture fixture)
+    public FinancialInformationControllerGetAllTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
     }
 
     [Fact]
-    public async Task SystemUserController_GetAll()
+    public async Task FinancialInformationController_GetAll()
     {
-        var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+        var financialInformationController =
+            FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
-        var result = await systemUserController.GetAll(null);
+        var result = await financialInformationController.GetAll(null);
 
         if (result is ObjectResult okResult)
         {

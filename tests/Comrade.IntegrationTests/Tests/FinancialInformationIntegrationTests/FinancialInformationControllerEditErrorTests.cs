@@ -1,43 +1,43 @@
 ﻿using Comrade.Application.Bases;
-using Comrade.Application.Services.SystemUserServices.Dtos;
+using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.Persistence.Repositories;
 using Comrade.UnitTests.DataInjectors;
-using Comrade.UnitTests.Tests.SystemUserTests.Bases;
+using Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
 using System;
 using Xunit;
 
-namespace Comrade.IntegrationTests.Tests.SystemUserIntegrationTests;
+namespace Comrade.IntegrationTests.Tests.FinancialInformationIntegrationTests;
 
-public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderFixture>
+public class FinancialInformationControllerEditErrorTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemUserControllerEditErrorTests(ServiceProviderFixture fixture)
+    public FinancialInformationControllerEditErrorTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
     }
 
     [Fact]
-    public async Task SystemUserController_Edit_Error()
+    public async Task FinancialInformationController_Edit_Error()
     {
-        var changeName = "new Name";
-        var changeEmail = "novo@email.com";
-        var changeRegistration = "NovaRegistration";
+        //var changeName = "new Name";
+        //var changeEmail = "novo@email.com";
+        //var changeRegistration = "NovaRegistration";
 
-        var systemUserId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
+        var financialInformationId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
 
         var testObject = new FinancialInformationEditDto
         {
-            Id = systemUserId,
-            Name = changeName
+            Id = financialInformationId,
+            //Name = changeName
         };
 
-        var systemUserController =
-            FinancialInformationInjectionController.GetSystemUserController(_fixture.SqlContextFixture,
+        var financialInformationController =
+            FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
-        var result = await systemUserController.Edit(testObject);
+        var result = await financialInformationController.Edit(testObject);
 
         if (result is ObjectResult okResult)
         {
@@ -46,10 +46,10 @@ public class SystemUserControllerEditErrorTests : IClassFixture<ServiceProviderF
             Assert.Equal(409, actualResultValue?.Code);
         }
 
-        var repository = new SystemUserRepository(_fixture.SqlContextFixture);
-        var user = await repository.GetById(systemUserId);
-        Assert.NotEqual(changeName, user!.Name);
-        Assert.NotEqual(changeEmail, user.Email);
-        Assert.NotEqual(changeRegistration, user.Registration);
+        var repository = new FinancialInformationRepository(_fixture.SqlContextFixture);
+        var user = await repository.GetById(financialInformationId);
+        //Assert.NotEqual(changeName, user!.Name);
+        //Assert.NotEqual(changeEmail, user.Email);
+        //Assert.NotEqual(changeRegistration, user.Registration);
     }
 }

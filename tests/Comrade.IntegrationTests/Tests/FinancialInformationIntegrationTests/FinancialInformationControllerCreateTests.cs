@@ -20,10 +20,10 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     {
         var testObject = new FinancialInformationCreateDto
         {
-            Name = "111",
-            Email = "777@testObject",
-            Password = "123456",
-            Registration = "123"
+            //Name = "111",
+            //Email = "777@testObject",
+            //Password = "123456",
+            //Registration = "123"
         };
 
         var financialInformationController =
@@ -47,9 +47,9 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     {
         var testObject = new FinancialInformationCreateDto
         {
-            Email = "777@testObject",
-            Password = "123456",
-            Registration = "123"
+            //Email = "777@testObject",
+            //Password = "123456",
+            //Registration = "123"
         };
 
         var financialInformationController =
