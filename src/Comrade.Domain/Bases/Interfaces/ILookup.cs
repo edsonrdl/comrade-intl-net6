@@ -1,4 +1,6 @@
-﻿namespace Comrade.Domain.Bases.Interfaces;
+﻿using Comrade.Domain.Enums;
+
+namespace Comrade.Domain.Bases.Interfaces;
 
 public interface ILookup
 {
