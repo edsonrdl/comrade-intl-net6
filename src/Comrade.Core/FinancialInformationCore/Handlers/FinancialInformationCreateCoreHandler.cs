@@ -37,10 +37,6 @@ public class
             return validate;
         }
 
-     
-
-        await _repository.Add(request).ConfigureAwait(false);
-
         await _repository.BeginTransactionAsync().ConfigureAwait(false);
         await _repository.Add(request).ConfigureAwait(false);
         await _repository.CommitTransactionAsync().ConfigureAwait(false);
