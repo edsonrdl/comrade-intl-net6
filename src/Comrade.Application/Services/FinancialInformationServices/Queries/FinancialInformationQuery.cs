@@ -6,6 +6,7 @@ using Comrade.Application.Lookups;
 using Comrade.Application.Paginations;
 using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.Core.FinancialInformationCore;
+using Comrade.Domain.Enums;
 using Comrade.Domain.Models;
 
 namespace Comrade.Application.Services.FinancialInformationServices.Queries;
@@ -48,7 +49,7 @@ public class FinancialInformationQuery : IFinancialInformationQuery
         return new PageResultDto<FinancialInformationDto>(paginationFilter, list);
     }
 
-    public async Task<ListResultDto<LookupDto>> FindByType(string type)
+    public async Task<ListResultDto<LookupDto>> FindByType(EnumTypeFinancial type)
     {
         var list = await Task.Run(() => _repository.FindByType(type)
             .ProjectTo<LookupDto>(_mapper.ConfigurationProvider)
