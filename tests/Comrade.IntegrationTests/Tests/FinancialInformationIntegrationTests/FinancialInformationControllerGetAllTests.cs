@@ -31,7 +31,7 @@ public class FinancialInformationControllerGetAllTests : IClassFixture<ServicePr
             Assert.NotNull(actualResultValue);
             Assert.Equal(200, actualResultValue?.Code);
             Assert.NotNull(actualResultValue?.Data);
-            Assert.Equal(4, actualResultValue?.Data?.Count);
+            Assert.Equal(3, actualResultValue?.Data?.Count);
         }
     }
 }

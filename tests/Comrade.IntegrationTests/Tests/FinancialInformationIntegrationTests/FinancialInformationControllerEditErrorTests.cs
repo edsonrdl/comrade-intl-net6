@@ -4,6 +4,7 @@ using Comrade.Persistence.Repositories;
 using Comrade.UnitTests.DataInjectors;
 using Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
 using System;
+using Comrade.Domain.Enums;
 using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.FinancialInformationIntegrationTests;
@@ -24,13 +25,15 @@ public class FinancialInformationControllerEditErrorTests : IClassFixture<Servic
         //var changeName = "new Name";
         //var changeEmail = "novo@email.com";
         //var changeRegistration = "NovaRegistration";
+        var changeType = EnumTypeFinancial.ReceiptDoc;
+      
 
         var financialInformationId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
 
         var testObject = new FinancialInformationEditDto
         {
             Id = financialInformationId,
-            //Name = changeName
+            Type = changeType,
         };
 
         var financialInformationController =
@@ -48,7 +51,7 @@ public class FinancialInformationControllerEditErrorTests : IClassFixture<Servic
 
         var repository = new FinancialInformationRepository(_fixture.SqlContextFixture);
         var user = await repository.GetById(financialInformationId);
-        //Assert.NotEqual(changeName, user!.Name);
+        Assert.NotEqual(changeType, user!.Type);
         //Assert.NotEqual(changeEmail, user.Email);
         //Assert.NotEqual(changeRegistration, user.Registration);
     }

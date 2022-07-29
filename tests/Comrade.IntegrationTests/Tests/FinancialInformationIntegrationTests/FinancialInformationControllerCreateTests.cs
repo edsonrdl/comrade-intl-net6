@@ -1,5 +1,7 @@
+using System;
 using Comrade.Application.Bases;
 using Comrade.Application.Services.FinancialInformationServices.Dtos;
+using Comrade.Domain.Enums;
 using Comrade.UnitTests.Tests.FinancialInformationTests.Bases;
 using Xunit;
 
@@ -18,21 +20,26 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     [Fact]
     public async Task FinancialInformationController_Create()
     {
+        //Preparação
         var testObject = new FinancialInformationCreateDto
         {
-            //Name = "111",
-            //Email = "777@testObject",
-            //Password = "123456",
-            //Registration = "123"
+            Type = EnumTypeFinancial.ReceiptDoc,
+            DateTime = new DateTime(2019 / 04 / 01),
+            Value = 234,
+            Cpf = "84455254073",
+            Card = "8473****1381",
+            Shop = "café",
+            Store = "cafeteria "
         };
-
         var financialInformationController =
             FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,
                 _fixture.Mediator);
 
+        //Execução
         var result = await financialInformationController.Create(testObject);
 
+        //Assert / Verificação
         if (result is ObjectResult okResult)
         {
             var actualResultValue = okResult.Value as SingleResultDto<EntityDto>;
@@ -47,9 +54,13 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     {
         var testObject = new FinancialInformationCreateDto
         {
-            //Email = "777@testObject",
-            //Password = "123456",
-            //Registration = "123"
+            Type = EnumTypeFinancial.ReceiptDoc,
+            DateTime = new DateTime(2019 / 04 / 01),
+            Value = 234,
+            Cpf = "84455254073",
+            Card = "8473****1381",
+            Shop = "café",
+            Store = "cafeteria "
         };
 
         var financialInformationController =

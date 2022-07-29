@@ -20,7 +20,7 @@ public class FinancialInformationControllerGetTests : IClassFixture<ServiceProvi
     [Fact]
     public async Task FinancialInformationController_Get()
     {
-        var financialInformationId = new Guid("6adf10d0-1b83-46f2-91eb-0c64f1c638a5");
+        var financialInformationId = new Guid("4d4c2560-f7f2-4bcf-83aa-f932b17ed47f");
         var financialInformationController =
             FinancialInformationInjectionController.GetFinancialInformationController(_fixture.SqlContextFixture,
                 _fixture.MongoDbContextFixture,

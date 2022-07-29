@@ -1,4 +1,5 @@
-﻿using Comrade.Application.Bases;
+﻿using System;
+using Comrade.Application.Bases;
 using Comrade.Application.Paginations;
 using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.UnitTests.DataInjectors;
@@ -33,7 +34,7 @@ public class FinancialInformationControllerGetAllPaginatedTests : IClassFixture<
             Assert.NotNull(actualResultValue);
             Assert.Equal(200, actualResultValue?.Code);
             Assert.NotNull(actualResultValue?.Data);
-            Assert.Equal(4, actualResultValue?.Data?.Count);
+            Assert.Equal(3, actualResultValue?.Data?.Count);
         }
     }
 }

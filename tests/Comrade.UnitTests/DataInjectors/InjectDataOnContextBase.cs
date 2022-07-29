@@ -26,6 +26,11 @@ public static class InjectDataOnContextBase
                     assembly.GetManifestResourceStream($"{JsonPath}.system-user.json");
                 var systemUsers = JsonUtilities.GetListFromJson<SystemUser>(systemUserJson);
                 db.SystemUsers.AddRange(systemUsers!);
+
+                var financialInformationJson =
+                    assembly.GetManifestResourceStream($"{JsonPath}.financial-information.json");
+                var financialInformations = JsonUtilities.GetListFromJson<FinancialInformation>(financialInformationJson);
+                db.FinancialInformations.AddRange(financialInformations!);
             }
 
             db.SaveChanges();
