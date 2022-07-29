@@ -1,0 +1,32 @@
+[
+  {
+    "id": "6adf10d0-1b83-46f2-91eb-0c64f1c638a5",
+    "type": 1,
+    "dateTime": "2019/04/01",
+    "value": 234,
+    "cpf": "84455254073",
+    "card": "8473****1381",
+    "shop": "café",
+    "store": "cafeteria "
+  },
+  {
+    "id": "4d4c2560-f7f2-4bcf-83aa-f932b17ed47f",
+    "type": 4,
+    "dateTime": "2016/08/06",
+    "value": 123,
+    "cpf": "76915254073",
+    "card": "9673****1294",
+    "shop": "Lasanha",
+    "store": "casa da lasanha"
+  },
+  {
+    "id": "4e052f7c-8e42-42ce-b85c-72d6d59948af",
+    "type": 5,
+    "dateTime": "2016/09/07",
+    "value": 45.8,
+    "cpf": "95515254073",
+    "card": "8453****1231",
+    "shop": "feijão",
+    "store": "casa do feijão"
+  }
+]
