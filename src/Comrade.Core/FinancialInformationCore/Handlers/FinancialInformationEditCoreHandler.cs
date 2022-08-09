@@ -13,16 +13,14 @@ namespace Comrade.Core.FinancialInformationCore.Handlers;
 public class
     FinancialInformationEditCoreHandler : IRequestHandler<FinancialInformationEditCommand, ISingleResult<Entity>>
 {
-    private readonly IMongoDbCommandContext _mongoDbContext;
     private readonly IFinancialInformationRepository _repository;
     private readonly FinancialInformationEditValidation _financialInformationEditValidation;
 
     public FinancialInformationEditCoreHandler(FinancialInformationEditValidation financialInformationEditValidation,
-        IFinancialInformationRepository repository, IMongoDbCommandContext mongoDbContext)
+        IFinancialInformationRepository repository)
     {
         _financialInformationEditValidation = financialInformationEditValidation;
         _repository = repository;
-        _mongoDbContext = mongoDbContext;
     }
 
     public async Task<ISingleResult<Entity>> Handle(FinancialInformationEditCommand request,
@@ -36,7 +34,7 @@ public class
                 BusinessMessage.MSG04);
         }
 
-        var result = _financialInformationEditValidation.Execute(request, recordExists);
+        var result = _financialInformationEditValidation.Execute(request);
         if (!result.Success)
         {
             return result;
