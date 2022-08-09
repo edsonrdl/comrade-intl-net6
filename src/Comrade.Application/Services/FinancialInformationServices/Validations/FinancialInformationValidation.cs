@@ -30,14 +30,14 @@ public class FinancialInformationValidation<TDto> : DtoValidation<TDto>
     {
         RuleFor(v => v.Cpf)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(11).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .Length(11).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
             .WithName("Cpf");
     }
     protected void ValidateCard()
     {
         RuleFor(v => v.Card)
             .NotEmpty().WithMessage(ApplicationMessage.CAMPO_OBRIGATORIO)
-            .MaximumLength(12).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
+            .Length(12).WithMessage(ApplicationMessage.TAMANHO_ESPECIFICO_CAMPO)
             .WithName("Card");
     }
     protected void ValidateShop()

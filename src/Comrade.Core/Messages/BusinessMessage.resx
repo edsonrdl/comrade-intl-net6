@@ -144,6 +144,15 @@
   <data name="MSG09" xml:space="preserve">
     <value>Code do cargo invalido.</value>
   </data>
+  <data name="MSG10" xml:space="preserve">
+    <value>Valor incorreto para o tipo de transação Débito (O valor informado deve ser superior a R$ 3,00).</value>
+  </data>
+	<data name="MSG11" xml:space="preserve">
+    <value>Valor incorreto para o tipo de transação Boleto (O valor informado deve ser inferior a R$ 100,00).</value>
+  </data>
+  <data name="MSG12" xml:space="preserve">
+    <value>Valor incorreto para o tipo de transação Crédito (O valor informado deve ser entre R$ 130,00 e R$ 890,00).</value>
+  </data>
   <data name="LKUP2001" xml:space="preserve">
     <value>Não atingiu o número minimo de caracteres.</value>
   </data>

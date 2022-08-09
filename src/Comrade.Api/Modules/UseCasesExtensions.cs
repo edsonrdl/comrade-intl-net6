@@ -195,8 +195,9 @@ public static class UseCasesExtensions
         services.AddScoped<FinancialInformationPasswordValidation>();
         services.AddScoped<FinancialInformationEditValidation>();
         services.AddScoped<FinancialInformationDeleteValidation>();
-        services.AddScoped<FinancialInformationCreateValidation>();
+        services.AddScoped<IFinancialInformationCreateValidation,FinancialInformationCreateValidation>();
         services.AddScoped<FinancialInformationCreateManyValidation>();
+        services.AddScoped<FinancialInformationValueByTypeValidation>();
 
         #endregion
 
