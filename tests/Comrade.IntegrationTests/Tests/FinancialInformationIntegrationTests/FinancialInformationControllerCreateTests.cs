@@ -23,11 +23,11 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
         //Preparação
         var testObject = new FinancialInformationCreateDto
         {
-            Type = EnumTypeFinancial.ReceiptDoc,
+            Type = EnumTypeFinancial.Credit,
             DateTime = new DateTime(2019 / 04 / 01),
-            Value = 234,
-            Cpf = "84455254073",
-            Card = "8473****1381",
+            Value = 1000,
+            Cpf = "85638445573",
+            Card = "856384455731",
             Shop = "café",
             Store = "cafeteria "
         };
@@ -43,7 +43,6 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
         if (result is ObjectResult okResult)
         {
             var actualResultValue = okResult.Value as SingleResultDto<EntityDto>;
-            Assert.NotNull(actualResultValue);
             Assert.Equal(201, actualResultValue?.Code);
         }
     }
@@ -57,8 +56,8 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
             Type = EnumTypeFinancial.ReceiptDoc,
             DateTime = new DateTime(2019 / 04 / 01),
             Value = 234,
-            Cpf = "84455254073",
-            Card = "8473****1381",
+            Cpf = "84455",
+            Card = "8473",
             Shop = "café",
             Store = "cafeteria "
         };
@@ -77,4 +76,5 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
             Assert.Equal(409, actualResultValue?.Code);
         }
     }
+    
 }
