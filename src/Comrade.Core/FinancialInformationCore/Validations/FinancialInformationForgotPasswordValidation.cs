@@ -14,15 +14,15 @@ public class FinancialInformationForgotPasswordValidation
         _financialInformationEditValidation = financialInformationEditValidation;
     }
 
-    public ISingleResult<Entity> Execute(FinancialInformation entity, FinancialInformation? recordExists)
+    public ISingleResult<Entity> Execute(FinancialInformation entity)
     {
         var financialInformationEditValidationResult =
-            _financialInformationEditValidation.Execute(entity, recordExists);
+            _financialInformationEditValidation.Execute(entity);
         if (!financialInformationEditValidationResult.Success)
         {
             return financialInformationEditValidationResult;
         }
 
-        return new SingleResult<Entity>(recordExists);
+        return new SingleResult<Entity>(entity);
     }
 }

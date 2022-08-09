@@ -7,8 +7,19 @@ namespace Comrade.Core.FinancialInformationCore.Validations;
 
 public class FinancialInformationEditValidation
 {
-    public ISingleResult<Entity> Execute(FinancialInformation entity, FinancialInformation? recordExists)
+    private readonly FinancialInformationValueByTypeValidation _financialInformationValueByTypeValidation;
+
+    public FinancialInformationEditValidation(FinancialInformationValueByTypeValidation financialInformationValueByTypeValidation)
     {
-        return new SingleResult<Entity>(recordExists);
+        _financialInformationValueByTypeValidation = financialInformationValueByTypeValidation;
+    }
+    public ISingleResult<Entity> Execute(FinancialInformation entity)
+    {
+        var valueByTypeValidation = _financialInformationValueByTypeValidation.Execute(entity);
+        if (!valueByTypeValidation.Success)
+        {
+            return valueByTypeValidation;
+        }
+        return new SingleResult<Entity>(entity);
     }
 }
