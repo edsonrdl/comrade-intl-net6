@@ -9,6 +9,10 @@ public enum CustomFeature
     ///     Get Airplane.
     /// </summary>
     Airplane,
+    /// <summary>
+    ///     Get Role.
+    /// </summary>
+    Role,
 
     /// <summary>
     ///     Get SystemUser.

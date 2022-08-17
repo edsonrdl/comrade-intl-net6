@@ -3,6 +3,10 @@ using Comrade.Application.Services.AirplaneServices.Commands;
 using Comrade.Application.Services.AirplaneServices.Dtos;
 using Comrade.Application.Services.AirplaneServices.Handlers;
 using Comrade.Application.Services.AirplaneServices.Queries;
+using Comrade.Application.Services.RoleServices.Commands;
+using Comrade.Application.Services.RoleServices.Dtos;
+using Comrade.Application.Services.RoleServices.Handlers;
+using Comrade.Application.Services.RoleServices.Queries;
 using Comrade.Application.Services.AuthenticationServices.Commands;
 using Comrade.Application.Services.SystemUserServices.Commands;
 using Comrade.Application.Services.SystemUserServices.Dtos;
@@ -17,6 +21,11 @@ using Comrade.Core.AirplaneCore.Commands;
 using Comrade.Core.AirplaneCore.Handlers;
 using Comrade.Core.AirplaneCore.UseCases;
 using Comrade.Core.AirplaneCore.Validations;
+using Comrade.Core.RoleCore;
+using Comrade.Core.RoleCore.Commands;
+using Comrade.Core.RoleCore.Handlers;
+using Comrade.Core.RoleCore.UseCases;
+using Comrade.Core.RoleCore.Validations;
 using Comrade.Core.Bases.Interfaces;
 using Comrade.Core.SecurityCore;
 using Comrade.Core.SecurityCore.Commands;
@@ -108,6 +117,44 @@ public static class UseCasesExtensions
         services.AddScoped<AirplaneDeleteValidation>();
         services.AddScoped<AirplaneCreateValidation>();
         services.AddScoped<AirplaneValidateSameCode>();
+
+        #endregion
+
+        #region Role
+
+        // Application - Services
+        services.AddScoped<IRoleCommand, RoleCommand>();
+        services.AddScoped<IRoleQuery, RoleQuery>();
+
+        // Application - ServiceHandlers
+        services
+            .AddScoped<IRequestHandler<RoleCreateDto, SingleResultDto<EntityDto>>,
+                RoleCreateServiceHandler>();
+        services
+            .AddScoped<IRequestHandler<RoleEditDto, SingleResultDto<EntityDto>>,
+                RoleEditServiceHandler>();
+
+        // Core - UseCases
+        services.AddScoped<IUcRoleEdit, UcRoleEdit>();
+        services.AddScoped<IUcRoleCreate, UcRoleCreate>();
+        services.AddScoped<IUcRoleDelete, UcRoleDelete>();
+
+        // Core - CoreHandlers
+        services
+            .AddScoped<IRequestHandler<RoleCreateCommand, ISingleResult<Entity>>,
+                RoleCreateCoreHandler>();
+        services
+            .AddScoped<IRequestHandler<RoleDeleteCommand, ISingleResult<Entity>>,
+                RoleDeleteCoreHandler>();
+        services
+            .AddScoped<IRequestHandler<RoleEditCommand, ISingleResult<Entity>>,
+                RoleEditCoreHandler>();
+
+        // Core - Validations
+        services.AddScoped<IRoleEditValidation, RoleEditValidation>();
+        services.AddScoped<RoleDeleteValidation>();
+        services.AddScoped<RoleCreateValidation>();
+        services.AddScoped<RoleValidateSameCode>();
 
         #endregion
 
