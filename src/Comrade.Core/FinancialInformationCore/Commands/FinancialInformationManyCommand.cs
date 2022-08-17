@@ -8,5 +8,10 @@ namespace Comrade.Core.FinancialInformationCore.Commands;
 
 public class FinancialInformationCreateManyCommand : IRequest<ISingleResult<Entity>>
 {
+    public FinancialInformationCreateManyCommand(IList<FinancialInformation> financialInformations)
+    {
+        FinancialInformations = financialInformations;
+    }
+
     public IList<FinancialInformation> FinancialInformations { get; set; }
 }
