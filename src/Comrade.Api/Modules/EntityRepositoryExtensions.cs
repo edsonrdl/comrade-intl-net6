@@ -1,4 +1,5 @@
 using Comrade.Core.AirplaneCore;
+using Comrade.Core.RoleCore;
 using Comrade.Core.Bases.Interfaces;
 using Comrade.Core.SystemUserCore;
 using Comrade.Core.FinancialInformationCore;
@@ -20,6 +21,7 @@ public static class EntityRepositoryExtensions
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAirplaneRepository, AirplaneRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<ISystemUserRepository, SystemUserRepository>();
         services.AddScoped<IFinancialInformationRepository, FinancialInformationRepository>();
 

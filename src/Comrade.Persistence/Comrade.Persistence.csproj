@@ -15,10 +15,14 @@
 		<None Remove="SeedData\financial-Information.json" />
 		<None Remove="SeedData\Sheets\basicSheet.xlsx" />
 		<None Remove="SeedData\airplane.json" />
+		<None Remove="SeedData\role.json" />
 		<None Remove="SeedData\system-user.json" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="SeedData\role.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="SeedData\financial-information.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</EmbeddedResource>

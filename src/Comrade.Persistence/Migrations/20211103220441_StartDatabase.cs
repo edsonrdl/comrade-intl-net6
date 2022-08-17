@@ -23,6 +23,18 @@ namespace Comrade.Persistence.Migrations
                 {
                     table.PrimaryKey("pk_airp_airplane", x => x.airp_uuid_airplane);
                 });
+            migrationBuilder.CreateTable(
+                name: "syro_system_role",
+                columns: table => new
+                {
+                    syro_uuid_role = table.Column<Guid>(type: "uuid", nullable: false),
+                    syro_tx_name = table.Column<string>(type: "varchar", maxLength: 255, nullable: false)
+                    
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_syro_role", x => x.syro_uuid_role);
+                });
 
             migrationBuilder.CreateTable(
                 name: "syus_usuario_sistema",
@@ -47,6 +59,12 @@ namespace Comrade.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "ix_un_syro_tx_name",
+                table: "syro_system_role",
+                column: "syro_uuid_role",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "ix_un_syus_tx_email",
                 table: "syus_usuario_sistema",
                 column: "syus_tx_email",
@@ -63,7 +81,8 @@ namespace Comrade.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "airp_airplane");
-
+            migrationBuilder.DropTable(
+                name: "syro_system_role");
             migrationBuilder.DropTable(
                 name: "syus_usuario_sistema");
         }
