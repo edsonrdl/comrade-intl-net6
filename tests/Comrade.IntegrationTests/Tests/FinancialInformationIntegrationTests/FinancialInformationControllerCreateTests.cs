@@ -23,7 +23,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
         //Preparação
         var testObject = new FinancialInformationCreateDto
         {
-            Type = EnumTypeFinancial.Credit,
+            Type = EnumTypeFinancial.ReceiptDoc,
             DateTime = new DateTime(2019 / 04 / 01),
             Value = 1000,
             Cpf = "85638445573",
@@ -53,7 +53,7 @@ public sealed class FinancialInformationControllerCreateTests : IClassFixture<Se
     {
         var testObject = new FinancialInformationCreateDto
         {
-            Type = EnumTypeFinancial.ReceiptDoc,
+            Type = null,
             DateTime = new DateTime(2019 / 04 / 01),
             Value = 234,
             Cpf = "84455",
