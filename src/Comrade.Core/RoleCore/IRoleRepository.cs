@@ -5,5 +5,7 @@ namespace Comrade.Core.RoleCore;
 
 public interface IRoleRepository : IRepository<Role>
 {
-   
+    Task<ISingleResult<Role>> ValidateSameName(Guid id, string name);
+
+
 }
