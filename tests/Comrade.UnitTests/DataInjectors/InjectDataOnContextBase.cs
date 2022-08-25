@@ -1,4 +1,5 @@
-﻿using Comrade.Domain.Models;
+﻿using System.Linq;
+using Comrade.Domain.Models;
 using Comrade.Persistence.DataAccess;
 using Comrade.Persistence.Extensions;
 
@@ -12,15 +13,20 @@ public static class InjectDataOnContextBase
     {
         try
         {
-            db.Database.EnsureDeleted();
-
+            var deleted = db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
             var assembly = Assembly.GetAssembly(typeof(JsonUtilities));
 
             if (assembly is not null)
             {
                 var airplaneJson = assembly.GetManifestResourceStream($"{JsonPath}.airplane.json");
                 var airplanes = JsonUtilities.GetListFromJson<Airplane>(airplaneJson);
+                var airplaneslIst = db.Airplanes.ToList();
                 db.Airplanes.AddRange(airplanes!);
+
+                var roleJson = assembly.GetManifestResourceStream($"{JsonPath}.role.json");
+                var roles = JsonUtilities.GetListFromJson<Role>(roleJson);
+                db.Roles.AddRange(roles!);
 
                 var systemUserJson =
                     assembly.GetManifestResourceStream($"{JsonPath}.system-user.json");
