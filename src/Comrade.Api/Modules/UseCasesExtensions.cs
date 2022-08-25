@@ -154,7 +154,7 @@ public static class UseCasesExtensions
         services.AddScoped<IRoleEditValidation, RoleEditValidation>();
         services.AddScoped<RoleDeleteValidation>();
         services.AddScoped<RoleCreateValidation>();
-        services.AddScoped<RoleValidateSameCode>();
+        services.AddScoped<RoleValidateSameName>();
 
         #endregion
 
