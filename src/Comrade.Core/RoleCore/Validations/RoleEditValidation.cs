@@ -7,20 +7,20 @@ namespace Comrade.Core.RoleCore.Validations;
 
 public class RoleEditValidation : IRoleEditValidation
 {
-    private readonly RoleValidateSameCode _roleValidateSameCode;
+    private readonly RoleValidateSameName _roleValidateSameName;
 
-    public RoleEditValidation(RoleValidateSameCode roleValidateSameCode)
+    public RoleEditValidation(RoleValidateSameName roleValidateSameName)
     {
-        _roleValidateSameCode = roleValidateSameCode;
+        _roleValidateSameName = roleValidateSameName;
     }
 
     public async Task<ISingleResult<Entity>> Execute(Role entity, Role? recordExists)
     {
-        var registerSameCode =
-            await _roleValidateSameCode.Execute(entity).ConfigureAwait(false);
-        if (!registerSameCode.Success)
+        var registerSameName =
+            await _roleValidateSameName.Execute(entity).ConfigureAwait(false);
+        if (!registerSameName.Success)
         {
-            return registerSameCode;
+            return registerSameName;
         }
 
         return new SingleResult<Entity>(recordExists);
