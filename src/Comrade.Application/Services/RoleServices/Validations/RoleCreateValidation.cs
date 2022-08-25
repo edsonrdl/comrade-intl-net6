@@ -7,6 +7,6 @@ public class RoleCreateValidation : RoleValidation<RoleCreateDto>
     public RoleCreateValidation()
     {
         ValidateName();
-       
+
     }
 }
