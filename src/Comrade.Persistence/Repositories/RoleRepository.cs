@@ -6,8 +6,6 @@ using Comrade.Domain.Enums;
 using Comrade.Domain.Models;
 using Comrade.Persistence.Bases;
 using Comrade.Persistence.DataAccess;
-using DocumentFormat.OpenXml.Wordprocessing;
-
 namespace Comrade.Persistence.Repositories;
 
 public class RoleRepository : Repository<Role>, IRoleRepository
@@ -19,6 +17,18 @@ public class RoleRepository : Repository<Role>, IRoleRepository
     {
         _context = context ??
                    throw new ArgumentNullException(nameof(context));
+    }
+    public async Task<ISingleResult<Role>> ValidateSameName(Guid id, string name )
+    {
+        var exists = await _context.Roles
+            .Where(p => name.ToUpper().Trim().Equals(p.Name.ToUpper().Trim(), StringComparison.Ordinal))
+            .AnyAsync().ConfigureAwait(false);
+
+
+        return exists
+            ? new SingleResult<Role>((int)EnumResponse.ErrorBusinessValidation,
+                BusinessMessage.MSG13)
+            : new SingleResult<Role>();
     }
 
 }
