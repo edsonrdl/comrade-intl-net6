@@ -7,6 +7,7 @@ using Comrade.Core.Messages;
 using Comrade.Domain.Bases;
 using Comrade.Domain.Extensions;
 using MediatR;
+using Comrade.Domain.Models;
 
 namespace Comrade.Core.RoleCore.Handlers;
 
@@ -34,6 +35,8 @@ public class
             return validate;
         }
 
+        HydrateValues(request);
+
        
 
         await _repository.BeginTransactionAsync().ConfigureAwait(false);
@@ -44,5 +47,9 @@ public class
 
         return new CreateResult<Entity>(true,
             BusinessMessage.MSG01);
+    }
+    private static void HydrateValues( Role source)
+    {
+        source.Name = source.Name.ToUpper().Trim();
     }
 }

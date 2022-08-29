@@ -59,6 +59,6 @@ public class
 
     private static void HydrateValues(Role target, Role source)
     {
-        target.Name = source.Name;
+        target.Name = source.Name.ToUpper().Trim();
     }
 }
