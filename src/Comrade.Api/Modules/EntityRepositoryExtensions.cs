@@ -3,6 +3,7 @@ using Comrade.Core.RoleCore;
 using Comrade.Core.Bases.Interfaces;
 using Comrade.Core.SystemUserCore;
 using Comrade.Core.FinancialInformationCore;
+using Comrade.Core.SystemUserRoleCore;
 using Comrade.Persistence.DataAccess;
 using Comrade.Persistence.Repositories;
 
@@ -22,6 +23,7 @@ public static class EntityRepositoryExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAirplaneRepository, AirplaneRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
+        services.AddScoped<ISystemUserRoleRepository, SystemUserRoleRepository>();
         services.AddScoped<ISystemUserRepository, SystemUserRepository>();
         services.AddScoped<IFinancialInformationRepository, FinancialInformationRepository>();
 
