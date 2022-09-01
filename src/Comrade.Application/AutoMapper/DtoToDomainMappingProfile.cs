@@ -10,6 +10,8 @@ using Comrade.Core.FinancialInformationCore.Commands;
 using Comrade.Domain.Models;
 using Comrade.Application.Services.RoleServices.Dtos;
 using Comrade.Core.RoleCore.Commands;
+using Comrade.Application.Services.SystemUserRoleServices.Dtos;
+using Comrade.Core.SystemUserRoleCore.Commands;
 
 namespace Comrade.Application.AutoMapper;
 
@@ -23,6 +25,9 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<RoleDto, Role>();
         CreateMap<RoleCreateDto, RoleCreateCommand>();
         CreateMap<RoleEditDto, RoleEditCommand>();
+        CreateMap<SystemUserRoleDto, SystemUserRole>();
+        CreateMap<SystemUserRoleCreateDto, SystemUserRoleCreateCommand>();
+        CreateMap<SystemUserRoleEditDto, SystemUserRoleEditCommand>();
         CreateMap<SystemUserDto, SystemUser>();
         CreateMap<SystemUserDto, SystemUserCreateCommand>();
         CreateMap<SystemUserDto, SystemUserEditCommand>();
@@ -41,6 +46,9 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<RoleDto, Role>();
         CreateMap<RoleCreateDto, RoleCreateCommand>();
         CreateMap<RoleEditDto, RoleEditCommand>();
+        CreateMap<SystemUserRoleDto, SystemUserRole>();
+        CreateMap<SystemUserRoleCreateDto, SystemUserRoleCreateCommand>();
+        CreateMap<SystemUserRoleEditDto, SystemUserRoleEditCommand>();
         CreateMap<FinancialInformationDto, FinancialInformation>();
         CreateMap<FinancialInformationDto, FinancialInformationCreateCommand>();
         CreateMap<FinancialInformationCreateManyDto, FinancialInformationCreateManyCommand>();
