@@ -17,9 +17,13 @@
 		<None Remove="SeedData\airplane.json" />
 		<None Remove="SeedData\role.json" />
 		<None Remove="SeedData\system-user.json" />
+		<None Remove="SeedData\system-user-role.json" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="SeedData\system-user-role.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="SeedData\role.json">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</EmbeddedResource>
