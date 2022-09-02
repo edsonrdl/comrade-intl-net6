@@ -7,18 +7,17 @@ using Comrade.Core.Messages;
 using Comrade.Domain.Bases;
 using Comrade.Domain.Models;
 using MediatR;
-using Comrade.Core.SystemUserRoleCore.Commands;
 
 namespace Comrade.Core.SystemUserRoleCore.Handlers;
 
 public class
     SystemUserRoleDeleteCoreHandler : IRequestHandler<SystemUserRoleDeleteCommand, ISingleResult<Entity>>
 {
-    private readonly SystemUserRoleDeleteValidation _systemUserRoleDeleteValidation;
+    private readonly ISystemUserRoleDeleteValidation _systemUserRoleDeleteValidation;
     private readonly IMongoDbCommandContext _mongoDbContext;
     private readonly ISystemUserRoleRepository _repository;
 
-    public SystemUserRoleDeleteCoreHandler(SystemUserRoleDeleteValidation systemUserRoleDeleteValidation,
+    public SystemUserRoleDeleteCoreHandler(ISystemUserRoleDeleteValidation systemUserRoleDeleteValidation,
         ISystemUserRoleRepository repository, IMongoDbCommandContext mongoDbContext)
     {
         _systemUserRoleDeleteValidation = systemUserRoleDeleteValidation;

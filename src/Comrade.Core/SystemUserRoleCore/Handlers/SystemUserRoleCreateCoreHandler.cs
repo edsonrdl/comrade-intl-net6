@@ -13,11 +13,11 @@ namespace Comrade.Core.SystemUserRoleCore.Handlers;
 public class
     SystemUserRoleCreateCoreHandler : IRequestHandler<SystemUserRoleCreateCommand, ISingleResult<Entity>>
 {
-    private readonly SystemUserRoleCreateValidation _systemUserRoleCreateValidation;
+    private readonly ISystemUserRoleCreateValidation _systemUserRoleCreateValidation;
     private readonly IMongoDbCommandContext _mongoDbContext;
     private readonly ISystemUserRoleRepository _repository;
 
-    public SystemUserRoleCreateCoreHandler(SystemUserRoleCreateValidation systemUserRoleCreateValidation,
+    public SystemUserRoleCreateCoreHandler(ISystemUserRoleCreateValidation systemUserRoleCreateValidation,
         ISystemUserRoleRepository repository, IMongoDbCommandContext mongoDbContext)
     {
         _systemUserRoleCreateValidation = systemUserRoleCreateValidation;
