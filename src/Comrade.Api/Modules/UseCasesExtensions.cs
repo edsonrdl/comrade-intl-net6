@@ -16,9 +16,9 @@ using Comrade.Application.Services.FinancialInformationServices.Commands;
 using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.Application.Services.FinancialInformationServices.Handlers;
 using Comrade.Application.Services.FinancialInformationServices.Queries;
-using Comrade.Application.Services.SystemUserRoleServices.Commands;
-using Comrade.Application.Services.SystemUserRoleServices.Dtos;
-using Comrade.Application.Services.SystemUserRoleServices.Queries;
+using Comrade.Application.Services.SystemPermissionServices.Commands;
+using Comrade.Application.Services.SystemPermissionServices.Dtos;
+using Comrade.Application.Services.SystemPermissionServices.Queries;
 using Comrade.Core.AirplaneCore;
 using Comrade.Core.AirplaneCore.Commands;
 using Comrade.Core.AirplaneCore.Handlers;
@@ -47,13 +47,12 @@ using Comrade.Core.FinancialInformationCore.UseCases;
 using Comrade.Core.FinancialInformationCore.Validations;
 using Comrade.Domain.Bases;
 using MediatR;
-using Comrade.Application.Services.SystemUserRoleServices.Handlers;
-using Comrade.Core.SystemUserRoleCore;
-using Comrade.Core.SystemUserRoleCore.UseCases;
-using Comrade.Core.SystemUserRoleCore.Commands;
-using Comrade.Core.SystemUserRoleCore.Handlers;
-using Comrade.Core.SystemUserRoleCore.Validations;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Comrade.Application.Services.SystemPermissionServices.Handlers;
+using Comrade.Core.SystemPermissionCore;
+using Comrade.Core.SystemPermissionCore.UseCases;
+using Comrade.Core.SystemPermissionCore.Commands;
+using Comrade.Core.SystemPermissionCore.Handlers;
+using Comrade.Core.SystemPermissionCore.Validations;
 
 namespace Comrade.Api.Modules;
 
@@ -169,30 +168,31 @@ public static class UseCasesExtensions
 
         #endregion
 
-        #region SystemUserRole
+        #region SystemPermission
 
         // Application - Services
-        services.AddScoped<ISystemUserRoleCommand, SystemUserRoleCommand>();
-        services.AddScoped<ISystemUserRoleQuery, SystemUserRoleQuery>();
+        services.AddScoped<ISystemPermissionCommand, SystemPermissionCommand>();
+        services.AddScoped<ISystemPermissionQuery, SystemPermissionQuery>();
 
         // Application - Handlers
-        services.AddScoped<IRequestHandler<SystemUserRoleCreateDto, SingleResultDto<EntityDto>>, SystemUserRoleCreateServiceHandler>();
-        services.AddScoped<IRequestHandler<SystemUserRoleEditDto, SingleResultDto<EntityDto>>, SystemUserRoleEditServiceHandler>();
+        services.AddScoped<IRequestHandler<SystemPermissionCreateDto, SingleResultDto<EntityDto>>, SystemPermissionCreateServiceHandler>();
+        services.AddScoped<IRequestHandler<SystemPermissionEditDto, SingleResultDto<EntityDto>>, SystemPermissionEditServiceHandler>();
 
         // Core - UseCases
-        services.AddScoped<IUcSystemUserRoleEdit, UcSystemUserRoleEdit>();
-        services.AddScoped<IUcSystemUserRoleCreate, UcSystemUserRoleCreate>();
-        services.AddScoped<IUcSystemUserRoleDelete, UcSystemUserRoleDelete>();
+        services.AddScoped<IUcSystemPermissionEdit, UcSystemPermissionEdit>();
+        services.AddScoped<IUcSystemPermissionCreate, UcSystemPermissionCreate>();
+        services.AddScoped<IUcSystemPermissionDelete, UcSystemPermissionDelete>();
 
         // Core - CoreHandlers
-        services.AddScoped<IRequestHandler<SystemUserRoleCreateCommand, ISingleResult<Entity>>, SystemUserRoleCreateCoreHandler>();
-        services.AddScoped<IRequestHandler<SystemUserRoleDeleteCommand, ISingleResult<Entity>>, SystemUserRoleDeleteCoreHandler>();
-        services.AddScoped<IRequestHandler<SystemUserRoleEditCommand, ISingleResult<Entity>>, SystemUserRoleEditCoreHandler>();
+        services.AddScoped<IRequestHandler<SystemPermissionCreateCommand, ISingleResult<Entity>>, SystemPermissionCreateCoreHandler>();
+        services.AddScoped<IRequestHandler<SystemPermissionDeleteCommand, ISingleResult<Entity>>, SystemPermissionDeleteCoreHandler>();
+        services.AddScoped<IRequestHandler<SystemPermissionEditCommand, ISingleResult<Entity>>, SystemPermissionEditCoreHandler>();
 
         // Core - Validations
-        services.AddScoped<ISystemUserRoleEditValidation, SystemUserRoleEditValidation>();
-        services.AddScoped<ISystemUserRoleDeleteValidation, SystemUserRoleDeleteValidation>();
-        services.AddScoped<ISystemUserRoleCreateValidation, SystemUserRoleCreateValidation>();
+        services.AddScoped<ISystemPermissionEditValidation, SystemPermissionEditValidation>();
+        services.AddScoped<ISystemPermissionDeleteValidation,SystemPermissionDeleteValidation>();
+        services.AddScoped<ISystemPermissionCreateValidation,SystemPermissionCreateValidation>();
+        services.AddScoped<ISystemPermissionValidationSameName,SystemPermissionValidateSameName>();
 
 
         #endregion
