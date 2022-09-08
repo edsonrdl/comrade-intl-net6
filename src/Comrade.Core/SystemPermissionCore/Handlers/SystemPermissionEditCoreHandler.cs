@@ -59,8 +59,7 @@ public class
 
     private static void HydrateValues(SystemPermission target, SystemPermission source)
     {
-        target.Id = source.Id;
-        target.Name = source.Name;
-        target.Tag = source.Tag;
+        target.Name = source.Name.ToUpper().Trim();
+        target.Tag = source.Tag.ToUpper().Trim();
     }
 }

@@ -14,15 +14,16 @@ public class SystemPermission : Entity
     {
         Name = name;
         Tag = tag;
-
     }
 
-    [Column("sype_tx_system_permission", TypeName = "varchar")]
+    [Column("sype_tx_name", TypeName = "varchar")]
     [MaxLength(255)]
-    public string Name { get; set; } = null !;
+    [Required(ErrorMessage = "name is required")]
+    public string Name { get; set; } 
 
-    [Column("sype_tx_system_permission", TypeName = "varchar")]
+    [Column("sype_tx_tag", TypeName = "varchar")]
     [MaxLength(255)]
-    public string Tag { get; set; } = null!;
+    [Required(ErrorMessage = "tag is required")]
+    public string Tag { get; set; } 
 
 }
