@@ -18,15 +18,14 @@ public class SystemPermissionRepository : Repository<SystemPermission>, ISystemP
         _context = context ??
                    throw new ArgumentNullException(nameof(context));
     }
-    public async Task<ISingleResult<SystemPermission>> ValidateSameName(Guid id, string name,string tag)
+    public async Task<ISingleResult<SystemPermission>> ValidateTag(string tag)
     {
         var exists = await _context.SystemPermissions
-            .Where(p => name.ToUpper().Trim().Equals(p.Name.ToUpper().Trim(), StringComparison.Ordinal))
             .Where(v => tag.ToUpper().Trim().Equals(v.Tag.ToUpper().Trim(), StringComparison.Ordinal))
             .AnyAsync().ConfigureAwait(false);
         return exists
             ? new SingleResult<SystemPermission>((int)EnumResponse.ErrorBusinessValidation,
-                BusinessMessage.MSG13)
+                BusinessMessage.MSG14)
             : new SingleResult<SystemPermission>();
     }
 }
