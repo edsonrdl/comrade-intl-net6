@@ -10,8 +10,8 @@ using Comrade.Core.FinancialInformationCore.Commands;
 using Comrade.Domain.Models;
 using Comrade.Application.Services.RoleServices.Dtos;
 using Comrade.Core.RoleCore.Commands;
-using Comrade.Application.Services.SystemUserRoleServices.Dtos;
-using Comrade.Core.SystemUserRoleCore.Commands;
+using Comrade.Application.Services.SystemPermissionServices.Dtos;
+using Comrade.Core.SystemPermissionCore.Commands;
 
 namespace Comrade.Application.AutoMapper;
 
@@ -25,9 +25,9 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<RoleDto, Role>();
         CreateMap<RoleCreateDto, RoleCreateCommand>();
         CreateMap<RoleEditDto, RoleEditCommand>();
-        CreateMap<SystemUserRoleDto, SystemUserRole>();
-        CreateMap<SystemUserRoleCreateDto, SystemUserRoleCreateCommand>();
-        CreateMap<SystemUserRoleEditDto, SystemUserRoleEditCommand>();
+        CreateMap<SystemPermissionDto, SystemPermission>();
+        CreateMap<SystemPermissionCreateDto, SystemPermissionCreateCommand>();
+        CreateMap<SystemPermissionEditDto, SystemPermissionEditCommand>();
         CreateMap<SystemUserDto, SystemUser>();
         CreateMap<SystemUserDto, SystemUserCreateCommand>();
         CreateMap<SystemUserDto, SystemUserEditCommand>();
@@ -46,9 +46,9 @@ public class DtoToDomainMappingProfile : Profile
         CreateMap<RoleDto, Role>();
         CreateMap<RoleCreateDto, RoleCreateCommand>();
         CreateMap<RoleEditDto, RoleEditCommand>();
-        CreateMap<SystemUserRoleDto, SystemUserRole>();
-        CreateMap<SystemUserRoleCreateDto, SystemUserRoleCreateCommand>();
-        CreateMap<SystemUserRoleEditDto, SystemUserRoleEditCommand>();
+        CreateMap<SystemPermissionDto, SystemPermission>();
+        CreateMap<SystemPermissionCreateDto, SystemPermissionCreateCommand>();
+        CreateMap<SystemPermissionEditDto, SystemPermissionEditCommand>();
         CreateMap<FinancialInformationDto, FinancialInformation>();
         CreateMap<FinancialInformationDto, FinancialInformationCreateCommand>();
         CreateMap<FinancialInformationCreateManyDto, FinancialInformationCreateManyCommand>();

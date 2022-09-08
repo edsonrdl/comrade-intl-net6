@@ -6,7 +6,7 @@ using Comrade.Application.Services.AuthenticationServices.Dtos;
 using Comrade.Application.Services.SystemUserServices.Dtos;
 using Comrade.Application.Services.FinancialInformationServices.Dtos;
 using Comrade.Application.Services.RoleServices.Dtos;
-using Comrade.Application.Services.SystemUserRoleServices.Dtos;
+using Comrade.Application.Services.SystemPermissionServices.Dtos;
 using Comrade.Domain.Bases;
 using Comrade.Domain.Models;
 
@@ -20,7 +20,7 @@ public class DomainToDtoMappingProfile : Profile
         CreateMap<Lookup, LookupDto>();
         CreateMap<Airplane, AirplaneDto>();
         CreateMap<Role, RoleDto>();
-        CreateMap<SystemUserRole, SystemUserRoleDto>();
+        CreateMap<SystemPermission, SystemPermissionDto>();
         CreateMap<SystemUser, SystemUserDto>();
         CreateMap<SystemUser, AuthenticationDto>();
         CreateMap<FinancialInformation, FinancialInformationDto>();
