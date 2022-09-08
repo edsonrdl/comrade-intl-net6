@@ -5,7 +5,6 @@ using Comrade.Core.Bases.Interfaces;
 using Comrade.Core.Bases.Results;
 using Comrade.Core.Messages;
 using Comrade.Domain.Bases;
-using Comrade.Domain.Extensions;
 using MediatR;
 using Comrade.Domain.Models;
 
