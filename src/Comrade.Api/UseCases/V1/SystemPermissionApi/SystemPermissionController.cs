@@ -3,30 +3,30 @@ using Comrade.Api.Modules.Common;
 using Comrade.Api.Modules.Common.FeatureFlags;
 using Comrade.Application.Bases;
 using Comrade.Application.Paginations;
-using Comrade.Application.Services.SystemUserRoleServices.Commands;
-using Comrade.Application.Services.SystemUserRoleServices.Dtos;
-using Comrade.Application.Services.SystemUserRoleServices.Queries;
+using Comrade.Application.Services.SystemPermissionServices.Commands;
+using Comrade.Application.Services.SystemPermissionServices.Dtos;
+using Comrade.Application.Services.SystemPermissionServices.Queries;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Comrade.Api.UseCases.V1.SystemUserRoleApi;
+namespace Comrade.Api.UseCases.V1.SystemPermissionApi;
 
 // [Authorize]
-[FeatureGate(CustomFeature.SystemUserRole)]
+[FeatureGate(CustomFeature.SystemPermission)]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
-public class SystemUserRoleController : ComradeController
+public class SystemPermissionController : ComradeController
 {
-    private readonly ISystemUserRoleCommand _systemUserRoleCommand;
-    private readonly ISystemUserRoleQuery _systemUserRoleQuery;
-    private readonly ILogger<SystemUserRoleController> _logger;
+    private readonly ISystemPermissionCommand _systemPermissionCommand;
+    private readonly ISystemPermissionQuery _systemPermissionQuery;
+    private readonly ILogger<SystemPermissionController> _logger;
 
-    public SystemUserRoleController(ISystemUserRoleCommand systemUserRoleCommand,
-        ISystemUserRoleQuery systemUserRoleQuery, ILogger<SystemUserRoleController> logger)
+    public SystemPermissionController(ISystemPermissionCommand systemPermissionCommand,
+        ISystemPermissionQuery systemPermissionQuery, ILogger<SystemPermissionController> logger)
     {
-        _systemUserRoleCommand = systemUserRoleCommand;
-        _systemUserRoleQuery = systemUserRoleQuery;
+        _systemPermissionCommand = systemPermissionCommand;
+        _systemPermissionQuery = systemPermissionQuery;
         _logger = logger;
     }
 
@@ -36,7 +36,7 @@ public class SystemUserRoleController : ComradeController
     {
         try
         {
-            var result = await _systemUserRoleQuery.GetAll(paginationQuery).ConfigureAwait(false);
+            var result = await _systemPermissionQuery.GetAll(paginationQuery).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -47,16 +47,16 @@ public class SystemUserRoleController : ComradeController
     }
 
     /// <summary>
-    ///     Get an systemUserRole details.
+    ///     Get an systemPermission details.
     /// </summary>
-    /// <param name="systemUserRoleId"></param>
-    [HttpGet("get-by-id/{systemUserRoleId:Guid}")]
+    /// <param name="systemPermissionId"></param>
+    [HttpGet("get-by-id/{systemPermissionId:Guid}")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Find))]
-    public async Task<IActionResult> GetById([FromRoute][Required] Guid systemUserRoleId)
+    public async Task<IActionResult> GetById([FromRoute][Required] Guid systemPermissionId)
     {
         try
         {
-            var result = await _systemUserRoleQuery.GetByIdDefault(systemUserRoleId).ConfigureAwait(false);
+            var result = await _systemPermissionQuery.GetByIdDefault(systemPermissionId).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -68,11 +68,11 @@ public class SystemUserRoleController : ComradeController
 
     [HttpPost("create")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Create))]
-    public async Task<IActionResult> Create([FromBody][Required] SystemUserRoleCreateDto dto)
+    public async Task<IActionResult> Create([FromBody][Required] SystemPermissionCreateDto dto)
     {
         try
         {
-            var result = await _systemUserRoleCommand.Create(dto).ConfigureAwait(false);
+            var result = await _systemPermissionCommand.Create(dto).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -84,11 +84,11 @@ public class SystemUserRoleController : ComradeController
 
     [HttpPut("edit")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Edit))]
-    public async Task<IActionResult> Edit([FromBody][Required] SystemUserRoleEditDto dto)
+    public async Task<IActionResult> Edit([FromBody][Required] SystemPermissionEditDto dto)
     {
         try
         {
-            var result = await _systemUserRoleCommand.Edit(dto).ConfigureAwait(false);
+            var result = await _systemPermissionCommand.Edit(dto).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
@@ -98,13 +98,13 @@ public class SystemUserRoleController : ComradeController
         }
     }
 
-    [HttpDelete("delete/{systemUserRoleId:Guid}")]
+    [HttpDelete("delete/{systemPermissionId:Guid}")]
     [ApiConventionMethod(typeof(CustomApiConventions), nameof(CustomApiConventions.Delete))]
-    public async Task<IActionResult> Delete([FromRoute][Required] Guid systemUserRoleId)
+    public async Task<IActionResult> Delete([FromRoute][Required] Guid systemPermissionId)
     {
         try
         {
-            var result = await _systemUserRoleCommand.Delete(systemUserRoleId).ConfigureAwait(false);
+            var result = await _systemPermissionCommand.Delete(systemPermissionId).ConfigureAwait(false);
             return StatusCode(result.Code, result);
         }
         catch (Exception e)
