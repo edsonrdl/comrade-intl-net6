@@ -1,21 +1,21 @@
-﻿using Comrade.Core.SystemUserRoleCore.Commands;
+﻿using Comrade.Core.SystemPermissionCore.Commands;
 using Comrade.Core.Bases;
 using Comrade.Core.Bases.Interfaces;
 using Comrade.Domain.Bases;
 using MediatR;
 
-namespace Comrade.Core.SystemUserRoleCore.UseCases;
+namespace Comrade.Core.SystemPermissionCore.UseCases;
 
-public class UcSystemUserRoleEdit : UseCase, IUcSystemUserRoleEdit
+public class UcSystemPermissionEdit : UseCase, IUcSystemPermissionEdit
 {
     private readonly IMediator _mediator;
 
-    public UcSystemUserRoleEdit(IMediator mediator)
+    public UcSystemPermissionEdit(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    public async Task<ISingleResult<Entity>> Execute(SystemUserRoleEditCommand entity)
+    public async Task<ISingleResult<Entity>> Execute(SystemPermissionEditCommand entity)
     {
         var isValid = ValidateEntity(entity);
         if (!isValid.Success)

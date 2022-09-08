@@ -1,6 +1,6 @@
 ﻿using System.Threading;
-using Comrade.Core.SystemUserRoleCore.Commands;
-using Comrade.Core.SystemUserRoleCore.Validations;
+using Comrade.Core.SystemPermissionCore.Commands;
+using Comrade.Core.SystemPermissionCore.Validations;
 using Comrade.Core.Bases.Interfaces;
 using Comrade.Core.Bases.Results;
 using Comrade.Core.Messages;
@@ -8,24 +8,24 @@ using Comrade.Domain.Bases;
 using Comrade.Domain.Models;
 using MediatR;
 
-namespace Comrade.Core.SystemUserRoleCore.Handlers;
+namespace Comrade.Core.SystemPermissionCore.Handlers;
 
 public class
-    SystemUserRoleEditCoreHandler : IRequestHandler<SystemUserRoleEditCommand, ISingleResult<Entity>>
+    SystemPermissionEditCoreHandler : IRequestHandler<SystemPermissionEditCommand, ISingleResult<Entity>>
 {
-    private readonly ISystemUserRoleEditValidation _systemUserRoleEditValidation;
+    private readonly ISystemPermissionEditValidation _systemPermissionEditValidation;
     private readonly IMongoDbCommandContext _mongoDbContext;
-    private readonly ISystemUserRoleRepository _repository;
+    private readonly ISystemPermissionRepository _repository;
 
-    public SystemUserRoleEditCoreHandler(ISystemUserRoleEditValidation systemUserRoleEditValidation,
-        ISystemUserRoleRepository repository, IMongoDbCommandContext mongoDbContext)
+    public SystemPermissionEditCoreHandler(ISystemPermissionEditValidation systemPermissionEditValidation,
+        ISystemPermissionRepository repository, IMongoDbCommandContext mongoDbContext)
     {
-        _systemUserRoleEditValidation = systemUserRoleEditValidation;
+        _systemPermissionEditValidation = systemPermissionEditValidation;
         _repository = repository;
         _mongoDbContext = mongoDbContext;
     }
 
-    public async Task<ISingleResult<Entity>> Handle(SystemUserRoleEditCommand request,
+    public async Task<ISingleResult<Entity>> Handle(SystemPermissionEditCommand request,
         CancellationToken cancellationToken)
     {
         var recordExists = await _repository.GetById(request.Id).ConfigureAwait(false);
@@ -36,7 +36,7 @@ public class
                 BusinessMessage.MSG04);
         }
 
-        var validate = await _systemUserRoleEditValidation.Execute(request, recordExists)
+        var validate = await _systemPermissionEditValidation.Execute(request, recordExists)
             .ConfigureAwait(false);
 
         if (!validate.Success)
@@ -57,9 +57,10 @@ public class
             BusinessMessage.MSG02);
     }
 
-    private static void HydrateValues(SystemUserRole target, SystemUserRole source)
+    private static void HydrateValues(SystemPermission target, SystemPermission source)
     {
-        target.SystemUserId = source.SystemUserId;
-        target.RoleId = source.RoleId;
+        target.Id = source.Id;
+        target.Name = source.Name;
+        target.Tag = source.Tag;
     }
 }
