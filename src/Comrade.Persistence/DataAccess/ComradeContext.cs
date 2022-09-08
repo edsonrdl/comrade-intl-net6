@@ -15,7 +15,7 @@ public class ComradeContext : DbContext
     // Tables
     public DbSet<Airplane> Airplanes { get; set; }
     public DbSet<Role> Roles{ get; set; }
-    public DbSet<SystemUserRole> SystemUserRoles{ get; set; }
+    public DbSet<SystemPermission> SystemPermissions{ get; set; }
     public DbSet<SystemUser> SystemUsers { get; set; }
     public DbSet<FinancialInformation> FinancialInformations { get; set; }
 
@@ -27,7 +27,7 @@ public class ComradeContext : DbContext
         // Tables
         modelBuilder.ApplyConfiguration(new AirplaneConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
-        modelBuilder.ApplyConfiguration(new SystemUserRoleConfiguration());
+        modelBuilder.ApplyConfiguration(new SystemPermissionConfiguration());
         modelBuilder.ApplyConfiguration(new SystemUserConfiguration());
         modelBuilder.ApplyConfiguration(new FinancialInformationConfiguration());
     }

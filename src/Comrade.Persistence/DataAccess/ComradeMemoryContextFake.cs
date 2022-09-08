@@ -30,15 +30,15 @@ public static class ComradeMemoryContextFake
                 var roles =
                     JsonUtilities.GetListFromJson<Role>(
                         assembly.GetManifestResourceStream($"{JsonPath}.role.json"));
-                var systemUserRoles =
-                    JsonUtilities.GetListFromJson<SystemUserRole>(
-                        assembly.GetManifestResourceStream($"{JsonPath}.system-user-role.json"));
+                var systemPermissions =
+                    JsonUtilities.GetListFromJson<SystemPermission>(
+                        assembly.GetManifestResourceStream($"{JsonPath}.system-permission.json"));
                 var systemUser = JsonUtilities.GetListFromJson<SystemUser>(
                     assembly.GetManifestResourceStream($"{JsonPath}.system-user.json"));
 
                 context.Airplanes.AddRange(airplanes!);
                 context.Roles.AddRange(roles!);
-                context.SystemUserRoles.AddRange(systemUserRoles!);
+                context.SystemPermissions.AddRange(systemPermissions!);
                 context.SystemUsers.AddRange(systemUser!);
 
                 if (context.Airplanes.Any())
