@@ -185,5 +185,14 @@ namespace Comrade.Core.Messages {
                 return ResourceManager.GetString("MSG13", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Registro já existe com a mesma tag, por favor informe outra tag..
+        /// </summary>
+        public static string MSG14 {
+            get {
+                return ResourceManager.GetString("MSG14", resourceCulture);
+            }
+        }
     }
 }

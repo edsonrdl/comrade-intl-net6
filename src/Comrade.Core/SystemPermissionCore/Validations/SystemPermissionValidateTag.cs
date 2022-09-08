@@ -5,11 +5,11 @@ using Comrade.Domain.Models;
 
 namespace Comrade.Core.SystemPermissionCore.Validations;
 
-public class SystemPermissionValidateSameName : ISystemPermissionValidationSameName
+public class SystemPermissionValidateTag : ISystemPermissionValidationTag
 {
     private readonly ISystemPermissionRepository _repository;
 
-    public SystemPermissionValidateSameName(ISystemPermissionRepository repository)
+    public SystemPermissionValidateTag(ISystemPermissionRepository repository)
     {
         _repository = repository;
     }
@@ -18,7 +18,7 @@ public class SystemPermissionValidateSameName : ISystemPermissionValidationSameN
     public async Task<ISingleResult<Entity>> Execute(SystemPermission entity)
     {
 
-        var result = await _repository.ValidateSameName(entity.Id, entity.Name,entity.Tag)
+        var result = await _repository.ValidateTag( entity.Tag)
             .ConfigureAwait(false);
         if (result.Success)
         {
