@@ -19,7 +19,7 @@ public sealed class CustomWebApplicationFactory : WebApplicationFactory<Startup>
                         ["AllowedHosts"] = "*",
                         ["FeatureManagement:Airplane"] = "true",
                         ["FeatureManagement:Role"] = "true",
-                        ["FeatureManagement:SystemUserRole"] = "true",
+                        ["FeatureManagement:SystemPermission"] = "true",
                         ["FeatureManagement:SystemUser"] = "true",
                         ["FeatureManagement:Common"] = "true",
                         ["FeatureManagement:HealthChecks"] = "false",

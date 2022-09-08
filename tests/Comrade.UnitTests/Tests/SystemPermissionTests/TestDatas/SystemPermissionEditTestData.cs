@@ -1,31 +1,31 @@
-﻿using Comrade.Core.SystemUserRoleCore.Commands;
+﻿using Comrade.Core.SystemPermissionCore.Commands;
 using Comrade.Domain.Enums;
 
-namespace Comrade.UnitTests.Tests.SystemUserRoleTests.TestDatas;
+namespace Comrade.UnitTests.Tests.SystemPermissionTests.TestDatas;
 
-internal class SystemUserRoleEditTestData : IEnumerable<object[]>
+internal class SystemPermissionEditTestData : IEnumerable<object[]>
 {
     public IEnumerator<object[]> GetEnumerator()
     {
         yield return new object[]
         {
             EnumResponse.NoContent,
-            new SystemUserRoleEditCommand
+            new SystemPermissionEditCommand
             {
                 Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa5"),
-                SystemUserId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9") ,
-                RoleId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9")
+                Name= "joelho" ,
+                Tag= "dedo"
                 
             }
         };
         yield return new object[]
         {
             EnumResponse.NotFound,
-            new SystemUserRoleEditCommand
+            new SystemPermissionEditCommand
             {
                 Id = new Guid("00000000-df8b-4f96-889a-75b9d67c546f"),
-                SystemUserId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9") ,
-                RoleId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9")
+                Name= "xuxa",
+                Tag= "leite"
 
             }
         };

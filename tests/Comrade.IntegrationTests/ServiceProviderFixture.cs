@@ -6,8 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
-using Comrade.Domain.Models;
-
 namespace Comrade.IntegrationTests
 {
     public class ServiceProviderFixture : IDisposable

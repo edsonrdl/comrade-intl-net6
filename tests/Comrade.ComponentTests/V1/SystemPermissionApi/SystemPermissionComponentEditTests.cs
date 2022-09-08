@@ -6,29 +6,29 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-namespace Comrade.ComponentTests.V1.SystemUserRoleApi;
+namespace Comrade.ComponentTests.V1.SystemPermissionApi;
 
-public class SystemUserRoleComponentEditTests : IClassFixture<CustomWebApplicationFactoryFixture>
+public class SystemPermissionComponentEditTests : IClassFixture<CustomWebApplicationFactoryFixture>
 {
     [Fact]
-    public async Task EditSystemUserRole()
+    public async Task EditSystemPermission()
     {
         var fixture = new CustomWebApplicationFactoryFixture();
         var client = fixture.CustomWebApplicationFactory.CreateClient();
         var token = await GenerateFakeToken.Execute(fixture.Mediator);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-        var systemUserRole = new SystemUserRole
+        var systemPermission = new SystemPermission
         {
             Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa5"),
-            SystemUserId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9") ,
-            RoleId= new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa9")
+            Name= "churrasco",
+            Tag= "Celular"
         };
 
-        HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(systemUserRole), Encoding.UTF8);
+        HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(systemPermission), Encoding.UTF8);
         httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-        var actualResponse = await client.PutAsync("/api/v1/system-user-role/edit", httpContent).ConfigureAwait(false);
+        var actualResponse = await client.PutAsync("/api/v1/systempermission/edit", httpContent).ConfigureAwait(false);
         var actualResponseString = await actualResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
         Assert.Equal(HttpStatusCode.NoContent, actualResponse.StatusCode);

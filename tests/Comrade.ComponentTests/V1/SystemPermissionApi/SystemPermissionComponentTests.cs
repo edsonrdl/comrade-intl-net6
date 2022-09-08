@@ -2,19 +2,19 @@
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-namespace Comrade.ComponentTests.V1.SystemUserRoleApi;
+namespace Comrade.ComponentTests.V1.SystemPermissionApi;
 
-public class SystemUserRoleComponentTests : IClassFixture<CustomWebApplicationFactoryFixture>
+public class SystemPermissionComponentTests : IClassFixture<CustomWebApplicationFactoryFixture>
 {
     private readonly CustomWebApplicationFactoryFixture _fixture;
 
-    public SystemUserRoleComponentTests(CustomWebApplicationFactoryFixture fixture)
+    public SystemPermissionComponentTests(CustomWebApplicationFactoryFixture fixture)
     {
         _fixture = fixture;
     }
 
     [Fact]
-    public async Task GetSystemUserRoleReturnsList()
+    public async Task GetSystemPermissionReturnsList()
     {
         var client = _fixture
             .CustomWebApplicationFactory
@@ -26,7 +26,7 @@ public class SystemUserRoleComponentTests : IClassFixture<CustomWebApplicationFa
             new AuthenticationHeaderValue("Bearer", token);
 
         var actualResponse = await client
-            .GetAsync("api/v1/system-user-role/get-all")
+            .GetAsync("api/v1/system-permission/get-all")
             .ConfigureAwait(false);
 
         var actualResponseString = await actualResponse.Content
@@ -41,8 +41,9 @@ public class SystemUserRoleComponentTests : IClassFixture<CustomWebApplicationFa
         var jsonResponse = await JObject.LoadAsync(reader)
             .ConfigureAwait(false);
 
-        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["systemUserId"]!.Type);
-        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["roleId"]!.Type);
+        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["id"]!.Type);
+        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["name"]!.Type);
+        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["tag"]!.Type);
 
     }
 }
