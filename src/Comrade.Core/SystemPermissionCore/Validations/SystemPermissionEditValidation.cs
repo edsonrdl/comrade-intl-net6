@@ -7,22 +7,22 @@ namespace Comrade.Core.SystemPermissionCore.Validations;
 
 public class SystemPermissionEditValidation : ISystemPermissionEditValidation
 {
-    //private readonly SystemPermissionValidateSameName _systemPermissionValidateSameName;
+    
+    private readonly ISystemPermissionValidateTag _systemPermissionValidateTag;
 
-    //public SystemPermissionEditValidation(SystemPermissionValidateSameName systemPermissionValidateSameName)
-    //{
-    //  _systemPermissionValidateSameName = systemPermissionValidateSameName;
-    //}
+    public SystemPermissionEditValidation(ISystemPermissionValidateTag systemPermissionValidateTag)
+    {
+        _systemPermissionValidateTag = systemPermissionValidateTag;
+    }
 
     public async Task<ISingleResult<Entity>> Execute(SystemPermission entity, SystemPermission? recordExists)
     {
-        //var registerSameName =
-        //    await _systemPermissionValidateSameName.Execute(entity).ConfigureAwait(false);
-        //if (!registerSameName.Success)
-        //{
-        //    return registerSameName;
-        //}
-
+        var registerTag =
+            await _systemPermissionValidateTag.Execute(entity).ConfigureAwait(false);
+        if (!registerTag.Success)
+        {
+            return registerTag;
+        }
         return new SingleResult<Entity>(recordExists);
     }
 }
