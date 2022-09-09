@@ -192,7 +192,7 @@ public static class UseCasesExtensions
         services.AddScoped<ISystemPermissionEditValidation, SystemPermissionEditValidation>();
         services.AddScoped<ISystemPermissionDeleteValidation,SystemPermissionDeleteValidation>();
         services.AddScoped<ISystemPermissionCreateValidation,SystemPermissionCreateValidation>();
-        services.AddScoped<ISystemPermissionValidationTag, SystemPermissionValidateTag>();
+        services.AddScoped<ISystemPermissionValidateTag, SystemPermissionValidateTag>();
 
 
         #endregion
