@@ -4,5 +4,10 @@ namespace Comrade.Application.Services.SystemPermissionServices.Validations;
 
 public class SystemPermissionEditValidation : SystemPermissionValidation<SystemPermissionEditDto>
 {
-  
+    public SystemPermissionEditValidation()
+    {
+        ValidateName();
+        ValidateTag();
+    }
+
 }

@@ -4,4 +4,9 @@ namespace Comrade.Application.Services.SystemPermissionServices.Validations;
 
 public class SystemPermissionCreateValidation : SystemPermissionValidation<SystemPermissionCreateDto>
 {
+    public SystemPermissionCreateValidation()
+    {
+        ValidateName();
+        ValidateTag();
+    }
 }
