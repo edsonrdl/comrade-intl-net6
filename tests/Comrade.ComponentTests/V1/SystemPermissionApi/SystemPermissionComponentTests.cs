@@ -41,7 +41,6 @@ public class SystemPermissionComponentTests : IClassFixture<CustomWebApplication
         var jsonResponse = await JObject.LoadAsync(reader)
             .ConfigureAwait(false);
 
-        Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["id"]!.Type);
         Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["name"]!.Type);
         Assert.Equal(JTokenType.String, jsonResponse["data"]![0]!["tag"]!.Type);
 

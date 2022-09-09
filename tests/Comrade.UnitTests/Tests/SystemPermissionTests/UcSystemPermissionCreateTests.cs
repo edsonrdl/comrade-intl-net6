@@ -1,46 +1,43 @@
-//using System.Threading;
-//using Comrade.Core.SystemPermissionCore.Commands;
-//using Comrade.Core.SystemPermissionCore.Handlers;
-//using Comrade.Core.SystemPermissionCore.Validations;
-//using Comrade.Core.Bases.Interfaces;
-//using Comrade.Core.Bases.Results;
-//using Comrade.Domain.Bases;
-//using Comrade.Domain.Models;
-//using Comrade.Persistence.DataAccess;
-//using Comrade.Persistence.Repositories;
-//using Comrade.UnitTests.DataInjectors;
-//using Comrade.UnitTests.Tests.SystemPermissionTests.TestDatas;
-//using Microsoft.EntityFrameworkCore.Diagnostics;
-//using Xunit;
+using System.Threading;
+using Comrade.Core.SystemPermissionCore.Commands;
+using Comrade.Core.SystemPermissionCore.Handlers;
+using Comrade.Core.SystemPermissionCore.Validations;
+using Comrade.Core.Bases.Interfaces;
+using Comrade.Persistence.DataAccess;
+using Comrade.Persistence.Repositories;
+using Comrade.UnitTests.DataInjectors;
+using Comrade.UnitTests.Tests.SystemPermissionTests.TestDatas;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Xunit;
 
-//namespace Comrade.UnitTests.Tests.SystemPermissionTests;
+namespace Comrade.UnitTests.Tests.SystemPermissionTests;
 
-//public sealed class UcSystemPermissionCreateTests
-//{
-//    [Theory]
-//    [ClassData(typeof(SystemPermissionCreateTestData))]
-//    public async Task UcSystemPermissionCreate_Test(int expected, SystemPermissionCreateCommand testObjectInput)
-//    {
-//        var options = new DbContextOptionsBuilder<ComradeContext>()
-//            .UseInMemoryDatabase("test_database_UcSystemPermissionCreate_Test" + testObjectInput.Id)
-//            .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-//            .EnableSensitiveDataLogging().Options;
+public sealed class UcSystemPermissionCreateTests
+{
+    [Theory]
+    [ClassData(typeof(SystemPermissionCreateTestData))]
+    public async Task UcSystemPermissionCreate_Test(int expected, SystemPermissionCreateCommand testObjectInput)
+    {
+        var options = new DbContextOptionsBuilder<ComradeContext>()
+            .UseInMemoryDatabase("test_database_UcSystemPermissionCreate_Test" + testObjectInput.Id)
+            .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+            .EnableSensitiveDataLogging().Options;
 
-//        await using var context = new ComradeContext(options);
-//        await context.Database.EnsureCreatedAsync();
-//        InjectDataOnContextBase.InitializeDbForTests(context);
+        await using var context = new ComradeContext(options);
+        await context.Database.EnsureCreatedAsync();
+        InjectDataOnContextBase.InitializeDbForTests(context);
 
-//        var repository = new SystemPermissionRepository(context);
-//        var systemPermissionValidateSameName = new SystemPermissionValidateSameName(repository);
-//        var systemPermissionCreateValidation = new SystemPermissionCreateValidation(systemPermissionValidateSameName);
-//        var mongo = new Mock<IMongoDbCommandContext>();
+        var repository = new SystemPermissionRepository(context);
+        var systemPermissionValidateTag = new SystemPermissionValidateTag(repository);
+        var systemPermissionCreateValidation = new SystemPermissionCreateValidation(systemPermissionValidateTag);
+        var mongo = new Mock<IMongoDbCommandContext>();
 
 
-//        var handler =
-//            new SystemPermissionCreateCoreHandler(systemPermissionCreateValidation, repository, mongo.Object);
+        var handler =
+            new SystemPermissionCreateCoreHandler(systemPermissionCreateValidation, repository, mongo.Object);
 
-//        var result = await handler.Handle(testObjectInput, CancellationToken.None);
+        var result = await handler.Handle(testObjectInput, CancellationToken.None);
 
-//        Assert.Equal(expected, result.Code);
-//    }
-//}
+        Assert.Equal(expected, result.Code);
+    }
+}

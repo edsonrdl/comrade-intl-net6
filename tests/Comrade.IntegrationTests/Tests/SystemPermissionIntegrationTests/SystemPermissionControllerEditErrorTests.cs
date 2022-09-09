@@ -8,22 +8,21 @@ using Xunit;
 
 namespace Comrade.IntegrationTests.Tests.SystemPermissionIntegrationTests;
 
-public class SystemPermissionControllerEditTests : IClassFixture<ServiceProviderFixture>
+public class SystemPermissionControllerEditErrorTests : IClassFixture<ServiceProviderFixture>
 {
     private readonly ServiceProviderFixture _fixture;
 
-    public SystemPermissionControllerEditTests(ServiceProviderFixture fixture)
+    public SystemPermissionControllerEditErrorTests(ServiceProviderFixture fixture)
     {
         _fixture = fixture;
         InjectDataOnContextBase.InitializeDbForTests(_fixture.SqlContextFixture);
     }
 
     [Fact]
-    public async Task SystemPermissionController_Edit()
+    public async Task SystemPermissionController_Edit_Error()
     {
-        var changeName = "ADm";
-        var changeTag = "LEite  ";
-
+        var changeName = "adm";
+        var changeTag = "LeiTE  ";
 
         var systemPermissionId = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa5");
 
@@ -32,7 +31,6 @@ public class SystemPermissionControllerEditTests : IClassFixture<ServiceProvider
             Id = systemPermissionId,
             Name = changeName,
             Tag = changeTag,
-
         };
 
         var systemPermissionController =
@@ -41,16 +39,15 @@ public class SystemPermissionControllerEditTests : IClassFixture<ServiceProvider
                 _fixture.Mediator);
         var result = await systemPermissionController.Edit(testObject);
 
-        if (result is ObjectResult objectResult)
+        if (result is ObjectResult okResult)
         {
-            var actualResultValue = objectResult.Value as SingleResultDto<EntityDto>;
+            var actualResultValue = okResult.Value as SingleResultDto<EntityDto>;
             Assert.NotNull(actualResultValue);
             Assert.Equal(409, actualResultValue?.Code);
         }
 
         var repository = new SystemPermissionRepository(_fixture.SqlContextFixture);
         var systemPermission = await repository.GetById(systemPermissionId);
-
         Assert.NotEqual(changeName, systemPermission!.Name);
         Assert.NotEqual(changeTag, systemPermission!.Tag);
 

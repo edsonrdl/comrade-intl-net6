@@ -17,6 +17,15 @@ internal class SystemPermissionCreateTestData : IEnumerable<object[]>
 
             }
         };
+        yield return new object[]
+        {
+            409, new SystemPermissionCreateCommand
+            {
+                Name = "ADM",
+                Tag= "  LEite"
+
+            }
+        };
     }
     IEnumerator IEnumerable.GetEnumerator()
     {

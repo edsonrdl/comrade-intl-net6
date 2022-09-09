@@ -3,9 +3,6 @@ using Comrade.Core.SystemPermissionCore.Commands;
 using Comrade.Core.SystemPermissionCore.Handlers;
 using Comrade.Core.SystemPermissionCore.Validations;
 using Comrade.Core.Bases.Interfaces;
-using Comrade.Core.Bases.Results;
-using Comrade.Domain.Bases;
-using Comrade.Domain.Models;
 using Comrade.Persistence.DataAccess;
 using Comrade.Persistence.Repositories;
 using Comrade.UnitTests.DataInjectors;
@@ -31,7 +28,7 @@ public sealed class UcSystemPermissionEditTests
         InjectDataOnContextBase.InitializeDbForTests(context);
 
         var repository = new SystemPermissionRepository(context);
-        var systemPermissionValidateSameName = new SystemPermissionValidateSameName(repository);
+        var systemPermissionValidateSameName = new SystemPermissionValidateTag(repository);
         var systemPermissionEditValidation = new SystemPermissionEditValidation(systemPermissionValidateSameName);
         var mongo = new Mock<IMongoDbCommandContext>();
 

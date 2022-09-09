@@ -29,7 +29,17 @@ internal class SystemPermissionEditTestData : IEnumerable<object[]>
 
             }
         };
-       
+        yield return new object[]
+        {
+            EnumResponse.ErrorBusinessValidation,
+            new SystemPermissionEditCommand
+            {
+                Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa5"),
+                Name= "taxa",
+                Tag= "  LEite  "
+
+            }
+        };
     }
 
     IEnumerator IEnumerable.GetEnumerator()

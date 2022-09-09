@@ -8,35 +8,41 @@ using Xunit;
 
 namespace Comrade.ComponentTests.V1.SystemPermissionApi;
 
-public class SystemPermissionComponentEditTests : IClassFixture<CustomWebApplicationFactoryFixture>
+public class SystemPermissionComponentCreateErrorTests : IClassFixture<CustomWebApplicationFactoryFixture>
 {
-    [Fact]
-    public async Task EditSystemPermission()
+    private readonly CustomWebApplicationFactoryFixture _fixture;
+
+    public SystemPermissionComponentCreateErrorTests(CustomWebApplicationFactoryFixture fixture)
     {
-        var fixture = new CustomWebApplicationFactoryFixture();
-        var client = fixture.CustomWebApplicationFactory.CreateClient();
-        var token = await GenerateFakeToken.Execute(fixture.Mediator);
+        _fixture = fixture;
+    }
+
+    [Fact]
+    public async Task CreateErrorSystemPermission()
+    {
+        var client = _fixture.CustomWebApplicationFactory.CreateClient();
+        var token = await GenerateFakeToken.Execute(_fixture.Mediator);
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         var systemPermission = new SystemPermission
         {
-            Id = new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa5"),
-            Name= "churrasco",
-            Tag= "Celular"
+            Name = "João",
+            Tag = "  LEIte  "
         };
+
 
         HttpContent httpContent = new StringContent(JsonConvert.SerializeObject(systemPermission), Encoding.UTF8);
         httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-        var actualResponse = await client.PutAsync("/api/v1/system-permission/edit", httpContent).ConfigureAwait(false);
+        var actualResponse = await client.PostAsync("/api/v1/system-permission/create", httpContent).ConfigureAwait(false);
         var actualResponseString = await actualResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-        Assert.Equal(HttpStatusCode.NoContent, actualResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.Conflict, actualResponse.StatusCode);
 
         using StringReader stringReader = new(actualResponseString);
         using JsonTextReader reader = new(stringReader) { DateParseHandling = DateParseHandling.None };
         var jsonResponse = await JObject.LoadAsync(reader).ConfigureAwait(false);
 
-        Assert.Equal(BusinessMessage.MSG02, jsonResponse["message"]);
+        Assert.Equal(BusinessMessage.MSG14, jsonResponse["message"]);
     }
 }
