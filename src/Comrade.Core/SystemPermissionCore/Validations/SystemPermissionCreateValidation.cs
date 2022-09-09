@@ -7,9 +7,9 @@ namespace Comrade.Core.SystemPermissionCore.Validations;
 
 public class SystemPermissionCreateValidation : ISystemPermissionCreateValidation 
 {
-    private readonly ISystemPermissionValidationTag _systemPermissionValidateSameName;
+    private readonly ISystemPermissionValidateTag _systemPermissionValidateSameName;
 
-    public SystemPermissionCreateValidation(ISystemPermissionValidationTag systemPermissionValidateSameName)
+    public SystemPermissionCreateValidation(ISystemPermissionValidateTag systemPermissionValidateSameName)
     {
         _systemPermissionValidateSameName = systemPermissionValidateSameName;
     }

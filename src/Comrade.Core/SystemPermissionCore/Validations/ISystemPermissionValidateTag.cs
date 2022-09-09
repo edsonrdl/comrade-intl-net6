@@ -4,7 +4,7 @@ using Comrade.Domain.Models;
 
 namespace Comrade.Core.SystemPermissionCore.Validations;
 
-public interface ISystemPermissionValidationTag
+public interface ISystemPermissionValidateTag
 {
     Task<ISingleResult<Entity>> Execute(SystemPermission entity);
 }

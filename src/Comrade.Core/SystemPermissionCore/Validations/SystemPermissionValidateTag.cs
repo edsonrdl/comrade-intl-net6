@@ -5,7 +5,7 @@ using Comrade.Domain.Models;
 
 namespace Comrade.Core.SystemPermissionCore.Validations;
 
-public class SystemPermissionValidateTag : ISystemPermissionValidationTag
+public class SystemPermissionValidateTag : ISystemPermissionValidateTag
 {
     private readonly ISystemPermissionRepository _repository;
 
@@ -27,5 +27,6 @@ public class SystemPermissionValidateTag : ISystemPermissionValidationTag
         } 
         
         return new SingleResult<Entity>(result.Code,result.Message);
+      
     }
 }
