@@ -8,6 +8,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
         builder.Property(b => b.Id).HasColumnName("syro_uuid_role").IsRequired();
         builder.HasKey(c => c.Id).HasName("pk_syro_role");
-
+        builder.HasMany(x => x.SystemUsers)
+            .WithMany(x => x.Roles)
+            .UsingEntity(j => j.ToTable("syus_system_user_syro_role"));
     }
 }
