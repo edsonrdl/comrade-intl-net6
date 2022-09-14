@@ -11,5 +11,8 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
         builder.HasMany(x => x.SystemUsers)
             .WithMany(x => x.Roles)
             .UsingEntity(j => j.ToTable("syus_system_user_syro_role"));
+        builder.HasMany(x => x.SystemPermissions)
+            .WithMany(x => x.Roles)
+            .UsingEntity(j => j.ToTable("sype_system_permission_user_syro_role"));
     }
 }

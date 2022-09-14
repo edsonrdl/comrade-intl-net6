@@ -10,6 +10,7 @@ public class Role : Entity
     {
         Name = "";
         SystemUsers = new HashSet<SystemUser>();
+        SystemPermissions = new HashSet<SystemPermission>();
 
     }
 
@@ -17,6 +18,7 @@ public class Role : Entity
     {
         Name = name;
         SystemUsers = new HashSet<SystemUser>();
+        SystemPermissions = new HashSet<SystemPermission>();
 
     }
 
@@ -25,6 +27,7 @@ public class Role : Entity
     [Required(ErrorMessage = "name is required")]
     public string Name { get; set; }
     public virtual ICollection<SystemUser> SystemUsers { get; set; }
+    public virtual ICollection<SystemPermission> SystemPermissions { get; set; }
 
 
 }

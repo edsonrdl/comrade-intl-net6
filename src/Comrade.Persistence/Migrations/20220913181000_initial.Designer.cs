@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comrade.Persistence.Migrations
 {
     [DbContext(typeof(ComradeContext))]
-    [Migration("20220912133647_initial")]
+    [Migration("20220913181000_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -204,6 +204,21 @@ namespace Comrade.Persistence.Migrations
                     b.ToTable("syus_system_user");
                 });
 
+            modelBuilder.Entity("RoleSystemPermission", b =>
+                {
+                    b.Property<Guid>("RolesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SystemPermissionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RolesId", "SystemPermissionsId");
+
+                    b.HasIndex("SystemPermissionsId");
+
+                    b.ToTable("sype_system_permission_user_syro_role", (string)null);
+                });
+
             modelBuilder.Entity("RoleSystemUser", b =>
                 {
                     b.Property<Guid>("RolesId")
@@ -219,11 +234,56 @@ namespace Comrade.Persistence.Migrations
                     b.ToTable("syus_system_user_syro_role", (string)null);
                 });
 
+            modelBuilder.Entity("SystemPermissionSystemUser", b =>
+                {
+                    b.Property<Guid>("SystemPermissionsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SystemUsersId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SystemPermissionsId", "SystemUsersId");
+
+                    b.HasIndex("SystemUsersId");
+
+                    b.ToTable("syus_system_user_sype_system_permission", (string)null);
+                });
+
+            modelBuilder.Entity("RoleSystemPermission", b =>
+                {
+                    b.HasOne("Comrade.Domain.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Comrade.Domain.Models.SystemPermission", null)
+                        .WithMany()
+                        .HasForeignKey("SystemPermissionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RoleSystemUser", b =>
                 {
                     b.HasOne("Comrade.Domain.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Comrade.Domain.Models.SystemUser", null)
+                        .WithMany()
+                        .HasForeignKey("SystemUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SystemPermissionSystemUser", b =>
+                {
+                    b.HasOne("Comrade.Domain.Models.SystemPermission", null)
+                        .WithMany()
+                        .HasForeignKey("SystemPermissionsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
