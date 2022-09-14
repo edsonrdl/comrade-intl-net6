@@ -21,7 +21,7 @@ public class SystemPermissionRepository : Repository<SystemPermission>, ISystemP
     public async Task<ISingleResult<SystemPermission>> ValidateTag(string tag)
     {
         var exists = await _context.SystemPermissions
-            .Where(v => tag.ToUpper().Trim().Equals(v.Tag.ToUpper().Trim(), StringComparison.Ordinal))
+            .Where(v => tag.ToUpper().Trim().Equals(v.Tag.ToUpper().Trim()))
             .AnyAsync().ConfigureAwait(false);
         return exists
             ? new SingleResult<SystemPermission>((int)EnumResponse.ErrorBusinessValidation,

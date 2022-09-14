@@ -29,7 +29,7 @@ namespace Comrade.Persistence.Migrations
                 columns: table => new
                 {
                     fiin_uuid_financial_information = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    fiin_nb_type = table.Column<int>(type: "number", nullable: false),
+                    fiin_nb_type = table.Column<string>(type: "varchar", nullable: false),
                     fiin_dt_dateTime = table.Column<DateTime>(type: "dateTime", nullable: false),
                     fiin_dc_value = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     fiin_tx_cpf = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
@@ -59,12 +59,12 @@ namespace Comrade.Persistence.Migrations
                 name: "syro_system_role",
                 columns: table => new
                 {
-                    syro_uuid_role = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    syro_uuid_system_role = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     syro_tx_name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_syro_role", x => x.syro_uuid_role);
+                    table.PrimaryKey("pk_syro_system_role", x => x.syro_uuid_system_role);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +84,7 @@ namespace Comrade.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "sype_system_permission_user_syro_role",
+                name: "sype_system_permission_syro_system_role",
                 columns: table => new
                 {
                     RolesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -92,18 +92,18 @@ namespace Comrade.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_sype_system_permission_user_syro_role", x => new { x.RolesId, x.SystemPermissionsId });
+                    table.PrimaryKey("PK_sype_system_permission_syro_system_role", x => new { x.RolesId, x.SystemPermissionsId });
                     table.ForeignKey(
-                        name: "FK_sype_system_permission_user_syro_role_sype_system_permission_SystemPermissionsId",
+                        name: "FK_sype_system_permission_syro_system_role_sype_system_permission_SystemPermissionsId",
                         column: x => x.SystemPermissionsId,
                         principalTable: "sype_system_permission",
                         principalColumn: "sype_uuid_system_permission",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_sype_system_permission_user_syro_role_syro_system_role_RolesId",
+                        name: "FK_sype_system_permission_syro_system_role_syro_system_role_RolesId",
                         column: x => x.RolesId,
                         principalTable: "syro_system_role",
-                        principalColumn: "syro_uuid_role",
+                        principalColumn: "syro_uuid_system_role",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -132,7 +132,7 @@ namespace Comrade.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "syus_system_user_syro_role",
+                name: "syus_system_user_syro_system_role",
                 columns: table => new
                 {
                     RolesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -140,15 +140,15 @@ namespace Comrade.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_syus_system_user_syro_role", x => new { x.RolesId, x.SystemUsersId });
+                    table.PrimaryKey("PK_syus_system_user_syro_system_role", x => new { x.RolesId, x.SystemUsersId });
                     table.ForeignKey(
-                        name: "FK_syus_system_user_syro_role_syro_system_role_RolesId",
+                        name: "FK_syus_system_user_syro_system_role_syro_system_role_RolesId",
                         column: x => x.RolesId,
                         principalTable: "syro_system_role",
-                        principalColumn: "syro_uuid_role",
+                        principalColumn: "syro_uuid_system_role",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_syus_system_user_syro_role_syus_system_user_SystemUsersId",
+                        name: "FK_syus_system_user_syro_system_role_syus_system_user_SystemUsersId",
                         column: x => x.SystemUsersId,
                         principalTable: "syus_system_user",
                         principalColumn: "syus_uuid_system_user",
@@ -162,8 +162,8 @@ namespace Comrade.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_sype_system_permission_user_syro_role_SystemPermissionsId",
-                table: "sype_system_permission_user_syro_role",
+                name: "IX_sype_system_permission_syro_system_role_SystemPermissionsId",
+                table: "sype_system_permission_syro_system_role",
                 column: "SystemPermissionsId");
 
             migrationBuilder.CreateIndex(
@@ -185,8 +185,8 @@ namespace Comrade.Persistence.Migrations
                 column: "SystemUsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_syus_system_user_syro_role_SystemUsersId",
-                table: "syus_system_user_syro_role",
+                name: "IX_syus_system_user_syro_system_role_SystemUsersId",
+                table: "syus_system_user_syro_system_role",
                 column: "SystemUsersId");
         }
 
@@ -199,13 +199,13 @@ namespace Comrade.Persistence.Migrations
                 name: "fiin_financial_information");
 
             migrationBuilder.DropTable(
-                name: "sype_system_permission_user_syro_role");
+                name: "sype_system_permission_syro_system_role");
 
             migrationBuilder.DropTable(
                 name: "syus_system_user_sype_system_permission");
 
             migrationBuilder.DropTable(
-                name: "syus_system_user_syro_role");
+                name: "syus_system_user_syro_system_role");
 
             migrationBuilder.DropTable(
                 name: "sype_system_permission");

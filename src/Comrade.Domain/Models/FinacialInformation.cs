@@ -20,7 +20,7 @@ public class FinancialInformation : Entity
         Store = store;
     }
 
-    [Column("fiin_nb_type", TypeName = "number")]
+    [Column("fiin_nb_type", TypeName = "varchar")]
     public EnumTypeFinancial Type { get; set; }
 
     [Column("fiin_dt_dateTime", TypeName = "dateTime")]

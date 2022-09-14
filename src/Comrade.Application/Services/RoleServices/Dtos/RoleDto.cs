@@ -11,8 +11,4 @@ public class RoleDto : EntityDto
     [Required(ErrorMessage = "Please enter a name")]
     public string? Name { get; set; }
 
-    internal object Upercase(Name name)
-    {
-        throw new NotImplementedException();
-    }
 }

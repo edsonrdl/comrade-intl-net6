@@ -95,8 +95,9 @@ namespace Comrade.Persistence.Migrations
                         .HasColumnType("varchar(19)")
                         .HasColumnName("fiin_tx_store");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("number")
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("varchar")
                         .HasColumnName("fiin_nb_type");
 
                     b.Property<decimal>("Value")
@@ -114,7 +115,7 @@ namespace Comrade.Persistence.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("syro_uuid_role");
+                        .HasColumnName("syro_uuid_system_role");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -123,7 +124,7 @@ namespace Comrade.Persistence.Migrations
                         .HasColumnName("syro_tx_name");
 
                     b.HasKey("Id")
-                        .HasName("pk_syro_role");
+                        .HasName("pk_syro_system_role");
 
                     b.ToTable("syro_system_role");
                 });
@@ -214,7 +215,7 @@ namespace Comrade.Persistence.Migrations
 
                     b.HasIndex("SystemPermissionsId");
 
-                    b.ToTable("sype_system_permission_user_syro_role", (string)null);
+                    b.ToTable("sype_system_permission_syro_system_role", (string)null);
                 });
 
             modelBuilder.Entity("RoleSystemUser", b =>
@@ -229,7 +230,7 @@ namespace Comrade.Persistence.Migrations
 
                     b.HasIndex("SystemUsersId");
 
-                    b.ToTable("syus_system_user_syro_role", (string)null);
+                    b.ToTable("syus_system_user_syro_system_role", (string)null);
                 });
 
             modelBuilder.Entity("SystemPermissionSystemUser", b =>

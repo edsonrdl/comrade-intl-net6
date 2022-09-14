@@ -21,7 +21,7 @@ public class RoleRepository : Repository<Role>, IRoleRepository
     public async Task<ISingleResult<Role>> ValidateSameName(Guid id, string name )
     {
         var exists = await _context.Roles
-            .Where(p => name.ToUpper().Trim().Equals(p.Name.ToUpper().Trim(), StringComparison.Ordinal))
+            .Where(p => name.ToUpper().Trim().Equals(p.Name.ToUpper().Trim()))
             .AnyAsync().ConfigureAwait(false);
 
 
