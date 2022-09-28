@@ -5,5 +5,5 @@ namespace Comrade.Core.SystemPermissionCore;
 
 public interface ISystemPermissionRepository : IRepository<SystemPermission>
 {
-    Task<ISingleResult<SystemPermission>> ValidateTag (string tag);
+    Task<ISingleResult<SystemPermission>> ValidateTag (Guid id ,string tag);
 }

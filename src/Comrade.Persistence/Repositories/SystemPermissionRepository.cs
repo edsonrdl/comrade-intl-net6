@@ -18,10 +18,10 @@ public class SystemPermissionRepository : Repository<SystemPermission>, ISystemP
         _context = context ??
                    throw new ArgumentNullException(nameof(context));
     }
-    public async Task<ISingleResult<SystemPermission>> ValidateTag(string tag)
+    public async Task<ISingleResult<SystemPermission>> ValidateTag(Guid id, string tag)
     {
         var exists = await _context.SystemPermissions
-            .Where(v => tag.ToUpper().Trim().Equals(v.Tag.ToUpper().Trim()))
+            .Where(v => v.Id != id && tag.ToUpper().Trim().Equals(v.Tag.ToUpper().Trim()))
             .AnyAsync().ConfigureAwait(false);
         return exists
             ? new SingleResult<SystemPermission>((int)EnumResponse.ErrorBusinessValidation,

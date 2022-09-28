@@ -18,7 +18,7 @@ public class SystemPermissionValidateTag : ISystemPermissionValidateTag
     public async Task<ISingleResult<Entity>> Execute(SystemPermission entity)
     {
 
-        var result = await _repository.ValidateTag( entity.Tag)
+        var result = await _repository.ValidateTag(entity.Id, entity.Tag)
             .ConfigureAwait(false);
         if (result.Success)
         {
